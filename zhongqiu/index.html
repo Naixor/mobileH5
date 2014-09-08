@@ -258,14 +258,17 @@
 					frontface.height = document.defaultView.getComputedStyle(document.body).height.toIntValue();
 					frontfaceCtx.drawImage(res["front"], 0, 0, frontface.width, frontface.height);
 
+					frontfaceCtx.fillStyle = "rgba(255,255,255, .8)";
+					frontfaceCtx.textAlign = "center";
+					frontfaceCtx.textBaseline = "middle";
+					frontfaceCtx.font = textConf.fontSize-8+"px senty";
+					frontfaceCtx.fillText("擦除完成你的中秋寄语~", canvas.width/2, canvas.height-textConf.fontSize);
+					
 					function drawText(canvas, textConf){
 						var ctx = canvas.getContext("2d");
 						ctx.fillStyle = "rgba(255,255,255, .8)";
 						ctx.textAlign = "center";
 						ctx.textBaseline = "middle";
-						ctx.font = textConf.fontSize-8+"px senty";
-						ctx.fillText("擦除完成你的中秋寄语~", canvas.width/2, canvas.height-textConf.fontSize);
-
 						ctx.font = textConf.fontSize+"px senty";
 						
 						var text = [],
