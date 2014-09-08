@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=300" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+	<title>Test</title>
+	<style>
+		html ,body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			/*background-color: black;*/
+		}
+		body {
+			background: rgba(123,34,12,0.5);
+		}
+		div.back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: transparent;
+			overflow: visible;
+			-webkit-transition: -webkit-transform 1s cubic-bezier(.36,.84,.36,.84);
+		}
+		div.back > div {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			background-size: 100% 100%;
+		}
+		div.main {
+			position: absolute;
+			width: 100%;
+			left: 0;
+			top: 0;
+			background: rgba(0,0,0,0.3);
+		}
+		div.one {
+			background-image: url(img/0.png);
+		}
+		div.two {
+			background-image: url(img/1.png);
+		}
+		div.three {
+			background-image: url(img/2.png);
+		}
+		div.four {
+			background-image: url(img/3.png);
+		}
+	</style>
+</head>
+<body>
+
+	<div class="main">	
+		<div class="back">
+			<div class="one">
+				第一页
+			</div>
+			<div class="two">
+				第二页
+			</div>
+			<div class="three">
+				第三页
+			</div>
+			<div class="four">
+				第四页
+			</div>
+		</div>
+	</div>
+	<script>
+
+		document.querySelector(".main").style.height = window.screen.availHeight+"px";
+		// document.querySelector(".main").style.top = window.screen.height - window.screen.availHeight +"px";
+	
+	</script>
+	<script>
+	(function(window){
+		var EventUtil = (function (){
+			var _addEvent = function(ele, type, func, capture){
+				if (window.addEventListener) {
+					ele.addEventListener(type, func, capture || false);
+					return;
+				}else if (window.attachEvent) {
+					ele.attachEvent("on"+type, func, capture || false);
+					return;
+				}else {
+					ele["on"+type] = func;
+				}
+			}
+			
+			return {
+				addEvent: _addEvent
+			}
+		})();
+		window.TouchEvent = (function(EventUtil, navigator) {
+			var _touch = isNotPC(),
+				Start = _touch ? "touchstart" : "mousedown",
+				End = _touch ? "touchend" : "mouseup",
+				Move = _touch ? "touchmove" : "mousemove",
+				mainDiv,
+				TouchHandler = {};
+
+			function isNotPC() {
+				var userAgentInfo = navigator.userAgent; 
+				var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
+				var flag = false; 
+				for (var v = 0; v < Agents.length; v++) { 
+					if (userAgentInfo.indexOf(Agents[v]) > 0) { 
+						flag = true; 
+						break;
+					}
+				}
+				return flag;
+			};
+			function fixTouch(touch) {
+				var winPageX = window.pageXOffset,
+					winPageY = window.pageYOffset,
+					x = touch.clientX,
+					y = touch.clientY;
+
+				if (touch.pageY === 0 && Math.floor(y) > Math.floor(touch.pageY) ||
+					touch.pageX === 0 && Math.floor(x) > Math.floor(touch.pageX)) {
+					// iOS4 clientX/clientY have the value that should have been
+					// in pageX/pageY. While pageX/page/ have the value 0
+					x = x - winPageX;
+					y = y - winPageY;
+				} else if (y < (touch.pageY - winPageY) || x < (touch.pageX - winPageX) ) {
+					// Some Android browsers have totally bogus values for clientX/Y
+					// when scrolling/zooming a page. Detectable since clientX/clientY
+					// should never be smaller than pageX/pageY minus page scroll
+					x = touch.pageX - winPageX;
+					y = touch.pageY - winPageY;
+				}
+
+				return {
+					clientX:    x,
+					clientY:    y
+				};
+			};
+
+			function init (){
+				var x1, x2, y1, y2;
+				var $touch;
+				var isMove = false;
+
+				EventUtil.addEvent(mainDiv, Start, function (e) {
+					e = window.event || e;
+					e.preventDefault();
+					var touch = fixTouch(_touch ? e.touches[0] : e);
+
+					x1 = touch.clientX;
+					y1 = touch.clientY;
+				});
+
+				EventUtil.addEvent(mainDiv, Move, function (e) {
+					isMove = true;
+					e = window.event || e;
+					e.preventDefault();
+						
+					$touch = fixTouch(_touch ? e.touches[0] : e);
+					x2 = $touch.clientX;
+					y2 = $touch.clientY;
+				});
+
+				EventUtil.addEvent(mainDiv, End, function (e) {
+					if (isMove) {
+						if (Math.abs(x1-x2) > Math.abs(y1-y2)) {
+							//left or right
+							if ((x1-x2) < -100) { //right
+								isMove = false;
+								
+								$touch["type"] = "TouchRight";
+								TouchHandler["right"] && TouchHandler["right"].call(mainDiv, $touch);
+							}
+							else if((x1-x2) > 100) { //left
+								isMove = false;
+								
+								$touch["type"] = "TouchLeft";
+								TouchHandler["left"] && TouchHandler["left"].call(mainDiv, $touch);
+							}
+						}
+						else {
+									// up or down
+							if(y1-y2 > 100) { //up
+								isMove = false;
+
+								$touch["type"] = "TouchUp";								
+								TouchHandler["up"] && TouchHandler["down"].call(mainDiv, $touch);
+							}
+							else if (y1-y2 < -100){ //down
+								isMove = false;
+
+								$touch["type"] = "TouchDown";
+								TouchHandler["down"] && TouchHandler["down"].call(mainDiv, $touch);
+							}
+						}
+					}
+				});
+			}
+			return {
+				bindElement: function(ele) {
+					mainDiv = ele;
+					init();
+					return this;
+				},
+				registerHandler: function(type, func) {
+					TouchHandler[type] = func;
+					return this;
+				},
+				touchRight: function(func) {
+					return this.registerHandler("right", func);
+				},
+				touchLeft: function(func) {
+					return this.registerHandler("left", func);
+				},
+				touchUp: function(func) {
+					return this.registerHandler("up", func);
+				},
+				touchDown: function(func) {
+					return this.registerHandler("down", func);
+				}
+			}
+		})(EventUtil, navigator);
+
+		function extend(target, src) {
+			for( var d in src) {
+				if (src.hasOwnProperty(d)) {
+					target[d] = src[d];
+				}
+			}
+			return target;
+		}
+
+		function GetCurrentStyle (obj, prop) {     
+		    if (obj.currentStyle) {        
+		        return obj.currentStyle[prop];     
+		    }      
+		    else if (window.getComputedStyle) {        
+		        propprop = prop.replace (/([A-Z])/g, "-$1");           
+		        propprop = prop.toLowerCase ();        
+		        return document.defaultView.getComputedStyle (obj,null)[prop];     
+		    }      
+		    return null;   
+		} 
+
+		var herizonSwitch = (function (){
+			
+			return {
+
+			}
+		})();
+
+		window.RotateSwitch = function (config) {
+			var back = document.querySelector(".back"),
+				childrenDiv = back.getElementsByTagName("div"),
+				_config = extend({
+					intervalRotate: 45,
+					switchIndex: 0,
+					rotateRadius: window.screen.availHeight,
+					rotateTime: 1,
+					shake: 0.3
+				}, config),
+				nowSwitchIndex = _config.switchIndex,
+				backDiv = {
+					width: /\d+/.exec(GetCurrentStyle(back, "width")),
+					height: /\d+/.exec(GetCurrentStyle(back, "height")),
+					cx: /\d+/.exec(GetCurrentStyle(back, "width"))/2,
+					cy: _config.rotateRadius
+				};
+
+			var deg = function (rotate) {
+				return Math.PI*2*rotate / 360;
+			}
+			var getPx = function (value) {
+				return (value+"px").toString();
+			}
+
+			extend(back.style, {
+				top: getPx(backDiv.cy - back.style.height/2),
+				left: getPx(0),
+				width: getPx(backDiv.width),
+				height: getPx(backDiv.height),
+				overflow: "visible",
+				webkitTransition: "-webkit-transform "+_config.rotateTime+"s cubic-bezier(.36,.84,.36,.84)"
+			});
+			for (var i = 0, l = childrenDiv.length; i < l; i++) {
+				var ir = _config.intervalRotate*i,
+					R = _config.rotateRadius;
+				extend(childrenDiv[i].style, {
+					top: getPx(R*(1-Math.cos(deg(ir))) - backDiv.height),
+					left: getPx(R * (Math.sin(deg(ir)))),
+					webkitTransform: "rotate("+ir+"deg)" 
+				});
+			};
+
+			return {
+				switchIndex: function (index) {
+					if (index >= childrenDiv.length) {
+						nowSwitchIndex = childrenDiv.length - 1;
+						// to do
+						setTimeout(function(){
+							extend(back.style, {
+								webkitTransform: "rotate("+(-1)*(nowSwitchIndex+_config.shake)*_config.intervalRotate+"deg)"
+							});
+						}, _config.rotateTime*500);
+						setTimeout(function(){
+							extend(back.style, {
+								webkitTransform: "rotate("+(-1)*nowSwitchIndex*_config.intervalRotate+"deg)"
+							});
+						}, _config.rotateTime*1000);
+						return;
+					}else if (index < 0) {
+						nowSwitchIndex = 0;
+						//to do
+						setTimeout(function(){
+							extend(back.style, {
+								webkitTransform: "rotate("+(-1)*(nowSwitchIndex-_config.shake)*_config.intervalRotate+"deg)"
+							});
+						}, _config.rotateTime*500);
+						setTimeout(function(){
+							extend(back.style, {
+								webkitTransform: "rotate("+(-1)*nowSwitchIndex*_config.intervalRotate+"deg)"
+							});
+						}, _config.rotateTime*1000);
+						return;
+					}
+					nowSwitchIndex = index;
+					back.style.webkitTransform = "rotate("+(-1)*nowSwitchIndex*_config.intervalRotate+"deg)";
+				},
+				switchNext: function(){
+					this.switchIndex(nowSwitchIndex+1);
+				},
+				switchPrev: function(){
+					this.switchIndex(nowSwitchIndex-1);
+				}
+			}
+		};
+	})(window);
+	</script>
+	<script>
+		var rotateSwitch = new RotateSwitch({});
+		TouchEvent.bindElement(document.body).touchLeft(function(e){
+			rotateSwitch.switchNext();
+		}).touchRight(function (e){
+			rotateSwitch.switchPrev();
+		});
+	</script>
+</body>
+</html>

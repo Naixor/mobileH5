@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="Author" contect="Hy">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>Baidu NSQA 2015招聘</title>
+	<script>
+	// (function(document){
+	// 	var meta = document.createElement("meta"),
+	// 		_screen = window.screen,
+	// 		_radioPix = window.devicePixelRatio;
+	// 	meta.setAttribute("name", "viewport");
+	// 	meta.setAttribute("content", "width="+_screen.availWidth.toString()+",height="+(_screen.availHeight-40).toString()+",initial-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi");
+	// 	document.head.appendChild(meta);
+	// })(document);
+	</script>
+	<style>
+	@font-face {
+		font-family: "xiyuan";
+		src: url(font/xiyuan.ttf);
+	}
+	html,body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		font-family: "xiyuan";
+		background-color: black;
+	}
+	div, svg,canvas, img {
+		image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: -o-crisp-edges;
+        image-rendering: optimize-contrast;
+        -ms-interpolation-mode: nearest-neighbor;
+	}
+	#loading {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 200;
+		overflow: hidden;
+	}
+	#rocket {
+		position: absolute;
+		top: 100%;
+		left: 44%;
+		height: 40%;
+		width: 12%;
+		background-image: url(img/rocket.png);
+	}
+	#loadAnimate {
+		width: 100%;
+		height: 100%;
+		-webkit-perspective: 1000px;
+	}
+	#main {
+		height:50px;
+		width:50px;
+		background:indianred;
+		border-radius:100%;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		line-height: 50px;
+		font-family: "微软雅黑", "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+		font-size: 20px;
+		font-weight: bold;
+		color: rgba(255,255,255,.8);
+		text-align: center;
+		-webkit-transform: translate3d(0,0,75px);
+	}
+
+	.div {
+		background:#fff;
+		height:14px;
+		width:14px;
+		border-radius:100%;
+		position:absolute;
+		margin:auto;
+	}
+
+	.ball-one {
+		top:0;
+		left:0;
+		right:75px;
+		bottom:75px;
+		-webkit-animation: anim 2s infinite linear;
+		-webkit-animation-delay: .2s
+	}
+
+	@-webkit-keyframes anim {
+		0%{
+		background:skyblue;
+		-webkit-transform: translate3d(0,0,150px);
+		z-index:150;
+		}
+		33%{
+		-webkit-transform: translate3d(75px,75px,100px);
+		}
+		66%{
+		width:10px;
+		height:10px;
+		}
+		99%{
+		-webkit-transform: translate3d(0,0,0);
+		height:14px;
+		width:14px;
+		z-index:0;
+		}
+		100%{
+		background:skyblue;
+		}
+	}
+
+	.ball-two {
+		top:0;
+		right:0;
+		left:75px;
+		bottom:75px;
+		-webkit-animation: anim-two 2s infinite linear;
+		-webkit-animation-delay: .6s;
+	}
+
+	@-webkit-keyframes anim-two {
+	0%{
+		background:skyblue;
+		-webkit-transform: translate3d(0,0,150px);
+		z-index:150;
+		}
+		33%{
+		-webkit-transform: translate3d(-75px,75px,100px);
+		}
+		66%{
+		width:10px;
+		height:10px;
+		}
+		99%{
+		-webkit-transform: translate3d(0,0,0);
+		height:14px;
+		width:14px;
+		z-index:0;
+		}
+		100%{
+		background:skyblue;
+		}
+	}
+
+	.ball-three {
+		top:-75px;
+		right:0;
+		left:0;
+		bottom:0;
+		-webkit-animation: anim-three 2s infinite linear;
+		-webkit-animation-delay: 1s;
+	}
+
+	@-webkit-keyframes anim-three {
+		0%{
+		background:skyblue;
+		-webkit-transform: translate3d(0,0,150px);
+		}
+		33%{
+		-webkit-transform: translate3d(0,75px,100px);
+		}
+		66%{
+		width:10px;
+		height:10px;
+		-webkit-transform: translate3d(0,37.5px,0);
+		}
+		99%{
+		-webkit-transform: translate3d(0,0,0);
+		height:14px;
+		width:14px;
+		}
+		100%{
+		background:skyblue;
+		}
+	}
+	#console {
+		width: 100%;
+		height: 30%；
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		-webkit-transform: translate3d(0,0,100px);
+		background-color: white;
+	}
+	</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loadAnimate">
+			<div id="main" class="div">0%</div>
+			<div class='ball-one div'></div>
+			<div class='ball-two div'></div>
+			<div class='ball-three div'></div>
+		</div>
+		<div id="rocket"></div>
+	</div>
+	<script src="js/app.js"></script>
+	<div id="container" class="container">
+		<div class="vertical">
+			<div class="main one">
+				<div id="starDiv">
+					<div id="star1" class="middleStar"></div>
+					<div id="star2" class="smallStar"></div>
+					<div id="star3" class="largeStar"></div>
+					<div id="star4" class="middleStar"></div>
+					<div id="star5" class="smallStar"></div>
+					<div id="star6" class="largeStar"></div>
+					<div id="star7" class="smallStar"></div>
+					<div id="star8" class="largeStar"></div>
+					<div id="star9" class="largeStar"></div>
+				</div>
+				<div id="arrow1" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="du"></div>
+				<div id="du1"></div>
+				<div id="youwantus"></div>
+				<div id="title1" class="title"></div>
+				<div id="logo1" class="logo"></div>
+				<div id="line2" class="line"></div>
+				<div id="line1" class="line"></div>
+				<div id="line3" class="line"></div>
+				<div id="line4" class="line"></div>
+			</div>
+			<div class="main two">
+				<div id="title2" class="title"></div>
+				<div id="battleman" class="hero"></div>
+				<div id="spiderman" class="hero"></div>
+				<div id="captain" class="hero"></div>
+				<div id="ironman" class="hero"></div>
+				<div id="arrow2" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="logo2" class="logo"></div>
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 140 322" xml:space="preserve">
+					<path id="circle-line" class="" fill="rgb(153, 19, 20)" stroke="rgba(255,255,255,.8)" stroke-width="1" stroke-miterlimit="10" d="M70 22A 10 10 0 0 1 70 2A10 10 0 0 1 70 22L70 322"/>
+					<path id="point1" fill="rgba(255,255,255,.8)" stroke="rgba(255,255,255,.8)" stroke-width="2" d="M70 13A 1 1 0 0 1 70 11A1 1 0 0 1 70 13"/>
+					<text id="battleman-text" x="45" y="70" dx="-26" dy="0" fill="white" width="100" height="20" font-family="xiyuan" font-size="10">手机开发&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp测试工程师</text>
+					<image id="battleman-logo" x="60" y="60" width="20" height="12" xlink:href="img/page1/battleman-logo.png"/>
+					<text id="spiderman-text" x="75" y="140" dx="0" dy="0" fill="white" width="70" height="20" font-family="xiyuan" font-size="10">测试开发工程师</text>
+					<image id="spiderman-logo" x="55" y="126" width="30" height="22" xlink:href="img/page1/spiderman-logo.png"/>
+					<text id="captain-text" x="45" y="205" dx="-23" dy="0" fill="white" width="100" height="20" font-family="xiyuan" font-size="10">数据分析&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp测试开发工程师</text>
+					<image id="captain-logo" x="60" y="196" width="20" height="12" xlink:href="img/page1/captain-logo.png"/>
+					<text id="ironman-text" x="45" y="270" dx="-24" dy="0" fill="white" width="100" height="20" font-family="xiyuan" font-size="10">软件测试&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp项目经理</text>
+					<image id="ironman-logo" x="60" y="260" width="20" height="12" xlink:href="img/page1/ironman-logo.png"/>
+					<path id="point2" fill="rgba(255,255,255,.8)" stroke="rgba(255,255,255,.8)" stroke-width="1" d="M70 322A2 2 0 0 1 70 318A2 2 0 0 1 70 322"/>
+				</svg>
+			</div>
+			<div class="main three">
+				<div id="title3" class="title"></div>
+				<div id="logo3" class="logo"></div>
+				<div id="arrow3" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="battleman-top"></div>
+				<div id="lightning1" class="lightning"></div>
+				<canvas class="arrow-right"></canvas>
+				<div class="battlemanPage-text pageThree" style="z-index: 1000"></div>
+				<div class="rotate">
+					<canvas id="music" class="direction direction1"></canvas>
+					<canvas id="video" class="direction direction2"></canvas>
+					<canvas id="word_photo" class="direction direction3"></canvas>
+					<canvas class="earth"></canvas>
+					<div class="rotateMain pageThree">
+						<svg version="1.1" class="battlemanPage-text " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：(音乐方向)</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目计划制定项目测试用例并实施，保证项目质量和进度
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目设计与实现有关自动化测试的代码与用例
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目特点，开发合适测试工具或自动化解决方案，提高测试效率 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-参与程序架构和代码的评审工作，并提出改进意见 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-设计与执行测试用例，跟踪定位产品软件中的缺陷或问题，并与项目
+								</tspan>
+								<tspan x="-80" dy="17">相关人员就项目进度和问题进行沟通</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：(音乐方向)
+								</tspan>
+								<tspan x="-80" dy="17">
+									-本科（含）以上 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Android手机平台者，熟悉Android体系结构及自动化方案等，并
+								</tspan>
+								<tspan x="-80" dy="17">
+									有Android测试自动化经验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Java语言，有较好的Java编程经验 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉数据结构、计算机体系结构等知识 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉软件测试理论、方法和过程，掌握多种手机自动化测试技术，并  
+								</tspan>
+								<tspan x="-80" dy="17">
+									能够不断地学习、总结和提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉手机操作系统结构，熟悉业界除Android外IOS、WP等手机平台  
+								</tspan>
+								<tspan x="-80" dy="17">
+									-良好的沟通能力和积极主动精神，能够有力推动、协调工作的开展   
+								</tspan>
+								<tspan x="-80" dy="17">
+									-强烈的责任心和敬业精神，结果导向型思维   
+								</tspan>
+							</text>
+						</svg>
+					</div>
+					<div class="rotateMain pageThree">
+						<svg version="1.1" class="battlemanPage-text pageThree" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：(视频方向)</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目计划制定项目测试用例并实施，保证项目质量和进度
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目设计与实现有关自动化测试的代码与用例
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目特点，开发合适测试工具或自动化解决方案，提高测试效率 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-参与程序架构和代码的评审工作，并提出改进意见 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-设计与执行测试用例，跟踪定位产品软件中的缺陷或问题，并与项目
+								</tspan>
+								<tspan x="-80" dy="17">相关人员就项目进度和问题进行沟通</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：(视频方向)
+								</tspan>
+								<tspan x="-80" dy="17">
+									-本科（含）以上 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Android手机平台者，熟悉Android体系结构及自动化方案等，并
+								</tspan>
+								<tspan x="-80" dy="17">
+									有Android测试自动化经验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Java语言，有较好的Java编程经验 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉数据结构、计算机体系结构等知识 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉软件测试理论、方法和过程，掌握多种手机自动化测试技术，并  
+								</tspan>
+								<tspan x="-80" dy="17">
+									能够不断地学习、总结和提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉手机操作系统结构，熟悉业界除Android外IOS、WP等手机平台  
+								</tspan>
+								<tspan x="-80" dy="17">
+									-良好的沟通能力和积极主动精神，能够有力推动、协调工作的开展   
+								</tspan>
+								<tspan x="-80" dy="17">
+									-强烈的责任心和敬业精神，结果导向型思维   
+								</tspan>
+							</text>
+						</svg>
+					</div>
+					<div class="rotateMain pageThree">
+						<svg version="1.1" class="battlemanPage-text pageThree" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：(文库&相机方向)</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目计划制定项目测试用例并实施，保证项目质量和进度
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目设计与实现有关自动化测试的代码与用例
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目特点，开发合适测试工具或自动化解决方案，提高测试效率 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-参与程序架构和代码的评审工作，并提出改进意见 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-设计与执行测试用例，跟踪定位产品软件中的缺陷或问题，并与项目
+								</tspan>
+								<tspan x="-80" dy="17">
+									 相关人员就项目进度和问题进行沟通
+								</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：(文库&相机方向)
+								</tspan>
+								<tspan x="-80" dy="17">
+									-本科（含）以上 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Android手机平台者，熟悉Android体系结构及自动化方案等，
+								</tspan>
+								<tspan x="-80" dy="17">
+									 并有Android测试自动化经验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉Java语言，有较好的Java编程经验 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉数据结构、计算机体系结构等知识 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉软件测试理论、方法和过程，掌握多种手机自动化测试技术，并  
+								</tspan>
+								<tspan x="-80" dy="17">
+									 能够不断地学习、总结和提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉手机操作系统结构，熟悉业界除Android外IOS、WP等手机平台  
+								</tspan>
+								<tspan x="-80" dy="17">
+									-良好的沟通能力和积极主动精神，能够有力推动、协调工作的开展   
+								</tspan>
+								<tspan x="-80" dy="17">
+									-强烈的责任心和敬业精神，结果导向型思维   
+								</tspan>
+							</text>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="main four">
+				<div id="title4" class="title"></div>
+				<div id="logo4" class="logo"></div>
+				<div id="arrow4" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="spiderman-top"></div>
+				<div id="lightning2" class="lightning"></div>
+				<canvas class="arrow-right"></canvas>
+				<div class="battlemanPage-text pageFour" style="z-index: 1000"></div>
+				<div class="rotate">
+					<canvas id="social" class="direction direction1"></canvas>
+					<canvas id="knowlage" class="direction direction2"></canvas>
+					<canvas class="earth"></canvas>
+					<div class="rotateMain pageFour">
+						<svg version="1.1" class="battlemanPage-text " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：(国际化方向)</tspan>
+								<tspan x="-80" dy="17">
+									-负责hao123国际化的测试问题分析，给出改进方案，提升测试和项 
+								</tspan>
+								<tspan x="-80" dy="17">
+									 目的效率
+								</tspan>
+								<tspan x="-80" dy="17">
+									-参与互联网软件产品测试的全流程，包括参与需求分析、设计评审，
+								</tspan>
+								<tspan x="-80" dy="17">
+									 制定测试计划，设计和执行测试用例，进行缺陷跟踪和软件质量分析
+								</tspan>
+								<tspan x="-80" dy="17">
+									-执行软件产品性能测试和分析，预测系统性能瓶颈，风险和安全隐患
+								</tspan>
+								<tspan x="-80" dy="17">
+									-结合产品业务开发测试工具或系统，提高linux服务测试效率和质量 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-可能涉及的工作领域包括实时推送服务、中转下发服务、分布式存储、
+								</tspan>
+								<tspan x="-80" dy="17">
+									 用户行为分析等 
+								</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：(国际化方向)
+								</tspan>
+								<tspan x="-80" dy="17">
+									-本科及以上优秀高校学历学位 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-对数据结构和算法设计具有深刻的理解，丰富的Linux/Unix下开发
+								</tspan>
+								<tspan x="-80" dy="17">
+									 测试经验，熟悉多线程编程、网络编程，熟练掌握C/C++程序设计 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有强烈的进取心和求知欲望，善于学习和运用新知识 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有良好的团队合作精神和积极主动的沟通意识 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有良好的分析和解决问题能力，对攻关疑难问题具有浓厚兴趣，推  
+								</tspan>
+								<tspan x="-80" dy="17">
+									 动能力强
+								</tspan>
+							</text>
+						</svg>
+					</div>
+					<div class="rotateMain pageFour">
+						<svg version="1.1" class="battlemanPage-text pageFour" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：(知识方向)</tspan>
+								<tspan x="-80" dy="17">
+									-负责知识搜索部相关产品（百度知道、百度百科等）的测试改进工作 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目特点，开发合适测试工具或自动化解决方案，提高测试效率
+								</tspan>
+								<tspan x="-80" dy="17">
+									-根据项目设计与实现自动化测试的代码与用例 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-参与程序架构和代码的评审工作，并提出改进意见 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-设计与执行测试用例，跟踪定位产品软件中的缺陷或问题 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-与项目相关人员就项目进度和问题进行沟通 
+								</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：(知识方向)
+								</tspan>
+								<tspan x="-80" dy="17">
+									-正规高校计算机或相关专业本科以上学历，2年以上开发测试经验 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有一定的软件自动化测试经验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-至少精通以下一种语言: php、C/C++, 或shell
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有移动互联网相关经验（android/IOS）优先 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-对软件测试有浓厚的兴趣和丰富的经验，有很强的分析能力和定位问   
+								</tspan>
+								<tspan x="-80" dy="17">
+									 题的能力
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具备较强的主动性和业务推动能力
+								</tspan> 
+							</text>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="main five">
+				<div id="title5" class="title"></div>
+				<div id="logo5" class="logo"></div>
+				<div id="arrow5" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="captain-top"></div>
+				<div id="shield" class="lightning"></div>
+				<div class="battlemanPage-text pageFive" style="z-index: 1000"></div>
+				<div class="rotate">
+					<canvas id="data" class="direction direction1"></canvas>
+					<canvas class="earth"></canvas>
+					<div class="rotateMain pageFive">
+						<svg version="1.1" class="battlemanPage-text " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：</tspan>
+								<tspan x="-80" dy="17">
+									-实施全流程测试，与产品大团队配合，帮助提高软件质量，改善用户 
+								</tspan>
+								<tspan x="-80" dy="17">
+									 体验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-识别和发现项目运作中的不足，制定计划并推进实施加以改进，提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									团队效率
+								</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：
+								</tspan>
+								<tspan x="-80" dy="17">
+									-热爱互联网，对大数据处理和数据分析挖掘有浓厚的兴趣 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-精通至少一门编程语言（C\C++、Java、php），对数据结构和算
+								</tspan>
+								<tspan x="-80" dy="17">
+									 法设计有较为深刻的理解
+								</tspan>
+								<tspan x="-80" dy="17">
+									-精通数据库 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-具有以下条件者优先   
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉分布式计算或高性能并行计算，并有相关项目经验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-了解数据仓库，多维分析建模者优先
+								</tspan> 
+							</text>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="main six">
+				<div id="title6" class="title"></div>
+				<div id="logo6" class="logo"></div>
+				<div id="arrow6" class="dropdown">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+				<div id="ironman-top"></div>
+				<div id="lightning3" class="lightning"></div>
+				<div class="battlemanPage-text pageSix" style="z-index: 1000"></div>
+				<div class="rotate">
+					<canvas id="manager" class="direction direction1"></canvas>
+					<canvas class="earth"></canvas>
+					<div class="rotateMain pageSix">
+						<svg version="1.1" class="battlemanPage-text " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 300 300" xml:space="preserve">
+							<text x="-80" y="0" dx="0" dy="0" fill="white" width="280" height="300" font-family="xiyuan" font-size="15">
+								<tspan x="-80" dy="17">工作职责：</tspan>
+								<tspan x="-80" dy="17">
+									-带领项目测试团队，实施全流程测试，与产品大团队配合，帮助提高  
+								</tspan>
+								<tspan x="-80" dy="17">
+									 软件质量，改善用户体验
+								</tspan>
+								<tspan x="-80" dy="17">
+									-全面负责团队业务、技术能力的提高，指导并帮助工程师发展和成长， 
+								</tspan>
+								<tspan x="-80" dy="17">
+									 促进团队建设
+								</tspan>
+								<tspan x="-80" dy="17">
+									-识别和发现项目运作中的不足，制定计划并推进实施加以改进，提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									 团队效率
+								</tspan>
+								<tspan x="-80" dy="25">
+									职位要求：
+								</tspan>
+								<tspan x="-80" dy="17">
+									-正规高校计算机及相关专业本科以上学历 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-非常强的技术背景，精通软件测试理论、方法和过程，掌握多种自动 
+								</tspan>
+								<tspan x="-80" dy="17">
+									 化测试技术，并能够不断地学习、总结和提高
+								</tspan>
+								<tspan x="-80" dy="17">
+									-熟悉互联网行业测试环境及技术者优先
+								</tspan>
+								<tspan x="-80" dy="17">
+									-有一定的团队管理经验和项目管理经验 
+								</tspan>
+								<tspan x="-80" dy="17">
+									-较强的人际技巧、成熟的管理方法和手段、优秀的执行能力   
+								</tspan>
+								<tspan x="-80" dy="17">
+									-良好的沟通能力和积极主动精神，能够有力推动、协调工作的开展
+								</tspan>
+								<tspan x="-80" dy="17">
+									-强烈的责任心和敬业精神，结果导向型思维
+								</tspan> 
+							</text>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="main seven">
+				<div id="title7" class="title"></div>
+				<div id="logo7" class="logo"></div>
+				<svg version="1.1" id="email" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 350 100" xml:space="preserve">
+					<image id="" x="0" y="0" width="70" height="100" xlink:href="img/page6/email.png"/>
+					<text x="70" y="50" dx="0" dy="0" fill="white" width="280" height="50" font-family="xiyuan" font-size="30">
+						<tspan>简历发送至:</tspan>
+					</text>
+					<text x="70" y="90" dx="0" dy="0" fill="white" width="280" height="50" font-family="xiyuan" font-size="25">
+						<tspan x="70">biye01@</tspan>
+						<tspan x="170">baidu.com</tspan>
+					</text>
+				</svg>
+				<svg version="1.1" id="superman" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 100 100" xml:space="preserve">
+					<image x="0" y="0" width="100" height="100" xlink:href="img/page6/superman.png"/>
+				</svg>
+				<div id="surport">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 400 150" xml:space="preserve">
+						<path fill="white" stroke="white" stroke-width="5" stroke-miterlimit="10" d="M0 0L400 0" />
+						<text x="10" y="25" fill="white" width="300" heigh="20" font-size="15" font-family="xiyuan">
+							设计支持
+						</text>
+						<text x="10" y="60" fill="white" width="300" heigh="25" font-size="20" font-size="20" font-weight="1" font-family="xiyuan">
+							CBG-QA品牌团队@webfe-qa
+						</text>
+						<path fill="white" stroke="white" stroke-width="1" stroke-miterlimit="10" d="M0 70L400 70" />
+						<text x="10" y="95" fill="white" width="300" heigh="20" font-size="15" font-family="xiyuan">
+							技术支持
+						</text>
+						<text x="10" y="130" fill="white" width="300" heigh="30" font-size="20" font-size="20" font-weight="1" font-family="xiyuan">
+							CBG-QA品牌团队@webfe-qa
+						</text>
+						<path fill="white" stroke="white" stroke-width="5" stroke-miterlimit="10" d="M0 150L400 150" />
+					</svg>
+				</div>
+				<div id="arrow7" class="dropup">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="style.css">
+	<script src="js/js.js"></script>
+</body>
+</html>
