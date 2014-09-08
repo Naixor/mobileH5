@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="Author" contect="Hy">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>中秋寄语</title>
+    <script>
+    	var words = decodeURI(window.location.href.split("isappinstalled=0")[1]);
+    	words = words.split("#");
+
+    	var Word = {
+    		auth: words[1],
+    		artical: words[2]
+    	}
+
+    	
+		Word.title && (document.querySelector('title').innerText = Word.title);
+    </script>
+    <style>
+	    @font-face{
+	    	font-family: "senty";
+			src: url(senty.ttf);
+	    }
+		html,body{
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			font-family: "senty";
+		}
+		div {
+			position: absolute;
+			top: 0;left: 0;width: 100%;height: 100%;
+			background-size: 100% 100%;
+		}
+		#frontface {
+			position: absolute;
+			top: 0;left: 0;
+			font-size: 2em;
+			font-family: "senty";
+			z-index: 100;
+			/*display: none;*/
+		}
+		#jiyu {
+			background-image: url(img/back.jpg);
+			z-index: 0;
+			display: none;
+		}
+		#label {
+			position: absolute;
+			display: block;
+			width: 60%;
+			height: 60%;
+			top: 20%;
+			left: 20%;
+			border: 0;
+			opacity: 0;
+			z-index: 100;
+			-webkit-transition: all .75s ease-in-out;
+			background-color: rgba(255,255,255,.8); 
+		}
+		#label span {
+			display: block;
+			position: absolute;
+			top: 0;
+		}
+		#input {
+			position: absolute;
+			width: 100%;
+			height: 10em;
+			top: 3em;
+			outline: none;
+			border: 0;
+			font-size: 46;
+			font-family: "senty";
+			background: transparent;
+		}
+		#auth {
+			position: absolute;
+			top: 14em;
+			right: 0;
+			text-align: right;
+			outline: none;
+			border: 0;
+			font-family: "senty";
+		}
+		#info {
+			position: absolute;
+			display: block;
+			top: 100%;
+			margin-top: -28px;
+			width: 100%;
+			line-height: 14px;
+			font-size: 12px;
+			text-align: center;
+			font-family: "senty";
+		}
+		.yuebing {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			top: 0;
+			background-image: url(img/yuebing.png);
+		}
+		#yuebing {
+			position: absolute;
+			top: -100px;
+			width: 100%;
+			height: 0;
+			z-index: 50;
+			overflow: visible;
+		}
+		.size1 {
+			-webkit-transform: scale3d(.6,.6,1);
+		}
+		.size2 {
+			-webkit-transform: scale3d(1,1,1);
+		}
+		.size3 {
+			-webkit-transform: scale3d(1.4,1.4,1);
+		}
+		.position0 {
+			left: 26%;
+		}
+		.position1 {
+			left: 42%;
+		}
+		.position2 {
+			left: 58%;
+		}
+		.position3 {
+			left: 74%;
+		}
+		.position4 {
+			left: 90%;
+		}
+		.delay1 {
+			-webkit-animation-delay: 0s !important;
+		}
+		.delay2 {
+			-webkit-animation-delay: 2s !important;
+		}
+		.delay3 {
+			-webkit-animation-delay: 4s !important;
+		}
+		.delay4 {
+			-webkit-animation-delay: 6s !important;
+		}
+		.down1 {
+			-webkit-animation: downOne 4s ease-out;
+		}
+		@-webkit-keyframes downOne {
+			0%{}
+			100%{-webkit-transform: translate3d(0,1000px,0)}
+		}
+		.down2 {
+			-webkit-animation: downTwo 4s ease-out;
+		}
+		@-webkit-keyframes downTwo {
+			0%{}
+			100%{-webkit-transform: translate3d(-100px,1000px,0)}
+		}
+		.down3 {
+			-webkit-animation: downThree 4s ease-out;
+		}
+		@-webkit-keyframes downThree {
+			0%{}
+			100%{-webkit-transform: translate3d(100px,1000px,0)}
+		}
+		.down4 {
+			-webkit-animation: downFour 6s ease-out;
+		}
+		@-webkit-keyframes downFour {
+			0%{}
+			100%{-webkit-transform: translate3d(0,1000px,0)}
+		}
+    </style>
+</head>
+<body>
+	<audio id="backSound" autoplay="autoplay" loop="loop">
+		<source src="music.mp3" type="audio/mpeg" />
+	</audio>
+	<canvas id="frontface"></canvas>
+	<div id="yuebing">
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+		<div class="yuebing"></div>
+	</div>
+	<div id="jiyu">
+		<div id="label">
+			<span>我的中秋寄语</span>
+			<textarea id="input" ></textarea>
+			<input id="auth" type="text" value="爱你的人" />
+			<div id="info">将你的寄语通过分享的方式传递给你爱的人和爱你的人</div>
+		</div>
+	</div>
+	<script src="jquery.min.js"></script>
+	<script src="app.js"></script>
+	<script src="Wipe.js"></script>
+	<script src="WeixinApi.js"></script>
+	<script>
+		String.prototype.toIntValue = function(){
+			return this.match(/\d+/)[0];
+		}
+		var size = {
+			width: document.defaultView.getComputedStyle(document.body).width,
+			height: document.defaultView.getComputedStyle(document.body).height
+		}
+		$.extend(true, document.getElementById("frontface").style, size);
+		$.extend(true, document.getElementById("jiyu").style, size);
+		
+		var wxData = {
+	        "appId": "",
+	        "imgUrl" : "",
+	        "link" : "",
+	        "desc" : "中秋寄语，传递幸福",
+	        "title" : "中秋寄语"
+	    };
+		var baseURL = "http://"+window.location.hostname + window.location.pathname;
+
+		window.onload = function(){
+
+			app.init(function($app){
+				$app.registRes("front", "img/front.jpg");
+				$app.registRes("back", "img/back.jpg");
+				$app.registRes("yuebing", "img/yuebing.png")
+
+				$app.run(function(res){
+					var frontface = document.getElementById("frontface"),
+						frontfaceCtx = frontface.getContext("2d");
+					frontface.width = document.defaultView.getComputedStyle(document.body).width.toIntValue();
+					frontface.height = document.defaultView.getComputedStyle(document.body).height.toIntValue();
+					frontfaceCtx.drawImage(res["front"], 0, 0, frontface.width, frontface.height);
+
+					function drawText(canvas, textConf){
+						var ctx = canvas.getContext("2d");
+						ctx.fillStyle = "rgba(255,255,255, .8)";
+						ctx.textAlign = "center";
+						ctx.textBaseline = "middle";
+						ctx.font = textConf.fontSize-8+"px senty";
+						ctx.fillText("擦除完成你的中秋寄语~", canvas.width/2, canvas.height-textConf.fontSize);
+
+						ctx.font = textConf.fontSize+"px senty";
+						
+						var text = [],
+							lock = true,
+							textHeight = (canvas.height-(textConf.fontSize+10)*(Math.ceil(textConf.text.length/8)+2))/2;
+						ctx.fillText("中秋寄语", canvas.width/2, textHeight);
+
+						while(lock){
+							var t = textConf.text.slice(8*text.length, 8*(text.length+1));
+
+							if(t !== "") {
+								text.push(t);
+								ctx.fillText(t, canvas.width/2, textHeight+text.length*(20+textConf.fontSize));
+							}
+							else{
+								ctx.textAlign = "left";
+								ctx.font = textConf.fontSize-8+"px senty";
+								ctx.fillText(textConf.auth+"的祝福", canvas.width/2, textHeight+(text.length+1)*(20+textConf.fontSize));
+								lock = false;
+							}
+						}
+					}
+
+					Word.artical && drawText(frontface, {
+						fontSize: 24,
+						text: Word.artical,
+						auth: Word.auth
+					});
+
+					Wipe.init(frontface, function(){
+						//提示左划切换到舞台动画
+						$("#label").css("opacity", 1);
+						$(".yuebing").each(function(index, val) {
+							 $(this).addClass("size"+Math.ceil(Math.random()*3)).addClass("position"+index%5).addClass("down"+Math.ceil(Math.random()*4)).addClass("delay"+Math.ceil(Math.random()*4));
+						});
+						$("#input").keyup(function(event) {
+							setTimeout(function(){
+								wxData.link = baseURL + "#"+$("#auth").val()+"#"+encodeURI($("#input").val());
+							},0);
+						});
+					});
+					$("#jiyu").css("display", "block");
+				});
+			});
+			WeixinApi.ready(function(Api) {
+
+			    // 分享的回调
+			    var wxCallbacks = {
+			        // 分享操作开始之前
+			        ready : function() {
+			            // 你可以在这里对分享的数据进行重组
+			        },
+			        // 分享被用户自动取消
+			        cancel : function(resp) {
+
+			        },
+			        // 分享失败了
+			        fail : function(resp) {
+
+			        },
+			        // 分享成功
+			        confirm : function(resp) {
+			        },
+			        // 整个分享过程结束
+			        all : function(resp,shareTo) {
+			        }
+			    };
+
+			    // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+			    Api.shareToFriend(wxData, wxCallbacks);
+
+			    // 点击分享到朋友圈，会执行下面这个代码
+			    Api.shareToTimeline(wxData, wxCallbacks);
+
+			    // 点击分享到腾讯微博，会执行下面这个代码
+			    Api.shareToWeibo(wxData, wxCallbacks);
+
+			    // iOS上，可以直接调用这个API进行分享，一句话搞定
+			    Api.generalShare(wxData,wxCallbacks);
+			});
+		};
+	</script>
+</body>
+</html>
