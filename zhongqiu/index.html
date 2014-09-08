@@ -13,7 +13,6 @@
     <script>
     	var words = decodeURI(window.location.href.split("isappinstalled=0")[1]);
     	words = words.split("#");
-
     	var Word = {
     		auth: words[1],
     		artical: words[2]
@@ -302,17 +301,21 @@
 						//提示左划切换到舞台动画
 						$("#label").css("opacity", 1);
 						$(".yuebing").each(function(index, val) {
-							 $(this).addClass("size"+Math.ceil(Math.random()*3)).addClass("position"+index%5).addClass("down"+Math.ceil(Math.random()*4)).addClass("delay"+Math.ceil(Math.random()*4));
+							 $(this).addClass("size"+Math.ceil(Math.random()*3)).addClass("position"+index%4).addClass("down"+Math.ceil(Math.random()*4)).addClass("delay"+Math.ceil(Math.random()*4));
 						});
 						$("#input").keyup(function(event) {
 							setTimeout(function(){
 								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
 							},0);
+						}).blur(function(event) {
+							$(this).trigger('keyup');
 						});
 						$("#auth").keyup(function(event) {
 							setTimeout(function(){
 								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
 							},0);
+						}).blur(function(event) {
+							$(this).trigger('keyup');
 						});
 					});
 					$("#jiyu").css("display", "block");
