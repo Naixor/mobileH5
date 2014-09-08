@@ -11,15 +11,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title>中秋寄语</title>
     <script>
-    	var words = decodeURI(window.location.href.split("isappinstalled=0")[1]);
+    // 解决iphone手机正常处理分享URL的问题
+    	var base = window.location.href.split("isappinstalled=0"),
+    		words;
+
+    	base[1] && (words = decodeURI(base[1]));
+    	base.length || (words = window.location.href);
     	words = words.split("#");
+    	alert(words[0])
+    	if (words.length == 1) {
+    		words = words[0].split("%23");
+    	};
     	var Word = {
     		auth: words[1],
     		artical: words[2]
     	}
-
-    	
-		Word.title && (document.querySelector('title').innerText = Word.title);
     </script>
     <style>
 	    @font-face{
