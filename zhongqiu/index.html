@@ -305,14 +305,14 @@
 						});
 						$("#input").keyup(function(event) {
 							setTimeout(function(){
-								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
+								wxData.link = baseURL + "#"+encodeURI($("#auth").val())+"#"+encodeURI($("#input").val());
 							},0);
 						}).blur(function(event) {
 							$(this).trigger('keyup');
 						});
 						$("#auth").keyup(function(event) {
 							setTimeout(function(){
-								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
+								wxData.link = baseURL + "#"+encodeURI($("#auth").val())+"#"+encodeURI($("#input").val());
 							},0);
 						}).blur(function(event) {
 							$(this).trigger('keyup');
