@@ -306,7 +306,12 @@
 						});
 						$("#input").keyup(function(event) {
 							setTimeout(function(){
-								wxData.link = baseURL + "#"+$("#auth").val()+"#"+encodeURI($("#input").val());
+								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
+							},0);
+						});
+						$("#auth").keyup(function(event) {
+							setTimeout(function(){
+								wxData.link = baseURL + "#"+$("#auth").val()+"#"+$("#input").val();
 							},0);
 						});
 					});
