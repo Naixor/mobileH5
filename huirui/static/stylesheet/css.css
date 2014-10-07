@@ -225,7 +225,7 @@ input{
 }
 #progress span {
 	position: absolute;
-	width: 10%;
+	width: 0;
 	height: 100%;
 	left: 0;
 	background: rgb(197,36,100);

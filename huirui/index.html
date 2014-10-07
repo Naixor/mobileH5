@@ -123,77 +123,77 @@
 		</svg>
 	</div>
 	<div id="app" class="app">
-		<img id="arrow" class="arrow" src="source/arrow.png">
+		<img id="arrow" class="arrow" src="static/source/arrow.png">
 		<div id="switch" class="vertical">
 			<div id="page1" class="main">
-				<img id="page1-tie" class="tie" src="source/page1/tie.png">
-				<img id="page1-topic" class="topic" src="source/page1/topic.png">
-				<img id="page1-word" src="source/page1/word.png">
-				<img id="page1-logo" class="logo" src="source/page1/logo.png">
-				<img id="page1-flower" src="source/page1/flower.png">
+				<img id="page1-tie" class="tie" src="static/source/page1/tie.png">
+				<img id="page1-topic" class="topic" src="static/source/page1/topic.png">
+				<img id="page1-word" src="static/source/page1/word.png">
+				<img id="page1-logo" class="logo" src="static/source/page1/logo.png">
+				<img id="page1-flower" src="static/source/page1/flower.png">
 			</div>
 			<div id="page2" class="main">
-				<img src="source/page2/word1.png" id="page2-word1">
-				<img src="source/page2/word2.png" id="page2-word2">
+				<img src="static/source/page2/word1.png" id="page2-word1">
+				<img src="static/source/page2/word2.png" id="page2-word2">
 			</div>
 			<div id="page3" class="main">
-				<img src="source/page3/word1.png" id="page3-word1">				
-				<img src="source/page3/word2.png" id="page3-word2">
+				<img src="static/source/page3/word1.png" id="page3-word1">				
+				<img src="static/source/page3/word2.png" id="page3-word2">
 			</div>
 			<div id="page4" class="main">
-				<img src="source/page4/word1.png" id="page4-word1">
-				<img src="source/page4/word2.png" id="page4-word2">
+				<img src="static/source/page4/word1.png" id="page4-word1">
+				<img src="static/source/page4/word2.png" id="page4-word2">
 			</div>
 			<div id="page5" class="main">
-				<img class="tie" src="source/page5/tie.png">
-				<img class="topic" src="source/page1/topic.png">
-				<img class="logo" src="source/page1/logo.png">
+				<img class="tie" src="static/source/page5/tie.png">
+				<img class="topic" src="static/source/page1/topic.png">
+				<img class="logo" src="static/source/page1/logo.png">
 				<div class="contain">
-					<img src="source/page5/word1.png" id="page5-word1">
-					<img src="source/page5/word2.png" id="page5-word2">
+					<img src="static/source/page5/word1.png" id="page5-word1">
+					<img src="static/source/page5/word2.png" id="page5-word2">
 				</div>
 			</div>
 			<div id="page6" class="main">
-				<img class="tie" src="source/page5/tie.png">
-				<img class="topic" src="source/page1/topic.png">
-				<img class="logo" src="source/page1/logo.png">
-				<img src="source/page6/word.png" id="page6-word">
-				<img src="source/page6/button.png" id="upload">
+				<img class="tie" src="static/source/page5/tie.png">
+				<img class="topic" src="static/source/page1/topic.png">
+				<img class="logo" src="static/source/page1/logo.png">
+				<img src="static/source/page6/word.png" id="page6-word">
+				<img src="static/source/page6/button.png" id="upload">
 				<input id="inputFile" type="file">
 			</div>
 			<div id="page7" class="main">
-				<img class="tie" src="source/page5/tie.png">
-				<img class="topic" src="source/page1/topic.png">
-				<img class="logo" src="source/page1/logo.png">
+				<img class="tie" src="static/source/page5/tie.png">
+				<img class="topic" src="static/source/page1/topic.png">
+				<img class="logo" src="static/source/page1/logo.png">
 				<div class="contain">
-					<img id="page7-word1" src="source/page7/word1.png">
-					<img id="page7-word2" src="source/page7/word2.png">
+					<img id="page7-word1" src="static/source/page7/word1.png">
+					<img id="page7-word2" src="static/source/page7/word2.png">
 					<div id="no"></div>
 					<div id="progress">
 						<span></span>
 					</div>
-					<img id="page7-word3" src="source/page7/word3.png">
+					<img id="page7-word3" src="static/source/page7/word3.png">
 				</div>
 			</div>
 			<div id="page8" class="main">
-				<img class="tie" src="source/page5/tie.png">
-				<img class="topic" src="source/page1/topic.png">
-				<img class="logo" src="source/page1/logo.png">
-				<img id="share-word" src="source/page8/word.png">
+				<img class="tie" src="static/source/page5/tie.png">
+				<img class="topic" src="static/source/page1/topic.png">
+				<img class="logo" src="static/source/page1/logo.png">
+				<img id="share-word" src="static/source/page8/word.png">
 			</div>
 		</div>
 	</div>
-	<link rel="stylesheet" href="stylesheet/css.css">
-	<script src="javascript/jquery.js"></script>	
-	<script src="javascript/js.js"></script>
-	<script src="javascript/WeixinApi.min.js"></script>
+	<link rel="stylesheet" href="static/stylesheet/css.css">
+	<script src="static/javascript/jquery.js"></script>	
+	<script src="static/javascript/js.js"></script>
+	<script src="static/javascript/WeixinApi.min.js"></script>
 	<script>
 	(function(window, $){
 		var click_count = 0,
 			image_count = 0,
 			max_animate_pages = 8;
 		$.get(URL.click_count,function(data){
-			var result = JSON.parse(data);
+			var result = data;
 			if (result && result.success == true) {
 				click_count = result.click_count;
 			}
@@ -239,105 +239,108 @@
 			// $page.regist("#arrow", ["arrow-hide"]);
 		});
 
-		$(function(){
-			setTimeout(function(){
-				$("#loading").css({
-					opacity: "0",
-					zIndex: "-100"
-				});
-				$("#app").css({
-					display: "block",
-					opacity: "1",
-					zIndex: "500"
-				});
+		document.onreadystatechange = function(){
+			if(document.readyState == "complete"){
+
 				setTimeout(function(){
-					$("#loading").remove();
-					page1.simulate();
-				},1000);
-			}, 4000);
-
-			$("#upload").on('touchstart', function(event) {
-				event.preventDefault();
-				$("#inputFile").trigger('click');
-			});
-
-			$("#inputFile").on('change', function() {
-				// console.log(this.files[0])
-				var	oFile = this.files[0],
-					sName = oFile.name || oFile.fileName,
-					sFileType = oFile.type,
-					nSize = 0,
-					nModTime,
-					reader = new FileReader();
-				// Android下读不到type信息，从文件名中解析
-				if(!sFileType){
-					sFileType = "image/" + sName.split(".").pop().toLowerCase();
-				}
-				// 读取文件大小、修改时间等信息
-				var oUploadInfo = {
-					name : oFile.name || oFile.fileName,
-			 		size : oFile.size || oFile.fileSize,
-					modTime : oFile.lastModifiedDate.valueOf(),
-					blob : oFile
-				};
-
-				if(/image/.test(sFileType)){
-					reader.readAsDataURL(oFile);
-				}else {
-					return -1;
-				}
-				reader.onerror = function (){
-
-				}
-				reader.onprogress = function (event){
-
-				}
-				reader.onload = function (){
-					$.post(URL.post_image, {file: reader.result}, function(data) {
-						// console.log(data)
-						var result = JSON.parse(data);
-						if (result && result.success == true) {
-							image_count = result.image_count;
-						}
+					$("#loading").css({
+						opacity: "0",
+						zIndex: "-100"
 					});
-				}
-			});
+					$("#app").css({
+						display: "block",
+						opacity: "1",
+						zIndex: "500"
+					});
+					setTimeout(function(){
+						$("#loading").remove();
+						page1.simulate();
+					},1000);
+				}, 4000);
 
-			VirticalSwitch("#switch", {
-				callback: function(index) {
-					index = index+1;
-					switch(index+1){
-						case 7:{
-							if (image_count !== 0) {
-								image_count += 200;
-								$("#page7-word1").css("display", "block");
-								$("#page7-word2").css("display", "none");
-								$("#no").html(image_count);
+				$("#upload").on('touchstart', function(event) {
+					event.preventDefault();
+					$("#inputFile").trigger('click');
+				});
+
+				$("#inputFile").on('change', function() {
+					// console.log(this.files[0])
+					var	oFile = this.files[0],
+						sName = oFile.name || oFile.fileName,
+						sFileType = oFile.type,
+						nSize = 0,
+						nModTime,
+						reader = new FileReader();
+					// Android下读不到type信息，从文件名中解析
+					if(!sFileType){
+						sFileType = "image/" + sName.split(".").pop().toLowerCase();
+					}
+					// 读取文件大小、修改时间等信息
+					var oUploadInfo = {
+						name : oFile.name || oFile.fileName,
+				 		size : oFile.size || oFile.fileSize,
+						modTime : oFile.lastModifiedDate.valueOf(),
+						blob : oFile
+					};
+
+					if(/image/.test(sFileType)){
+						reader.readAsDataURL(oFile);
+					}else {
+						return -1;
+					}
+					reader.onerror = function (){
+
+					}
+					reader.onprogress = function (event){
+
+					}
+					reader.onload = function (){
+						$.post(URL.post_image, {file: reader.result}, function(data) {
+							// console.log(data)
+							var result = data;
+							if (result && result.success == true) {
+								image_count = result.image_count;
 							}
-							setTimeout(function(){
-								$("#progress > span").css("width", (click_count+200)/20+"%");
-							},500);
-							break;
-						}
+						});
 					}
+				});
 
-					if (index > 1 && index < max_animate_pages) {
-						eval("page"+index+".simulate();page"+(index+1)+".clear();page"+(index-1)+".clear();");
-					}
-					else {
-						if (index === 1) {
-							eval("page"+index+".simulate();page"+(index+1)+".clear();");
-						}else{
-							eval("page"+index+".simulate();page"+(index-1)+".clear();");
+				VirticalSwitch("#switch", {
+					callback: function(index) {
+						index = index+1;
+						switch(index+1){
+							case 7:{
+								if (image_count !== 0) {
+									image_count += 200;
+									$("#page7-word1").css("display", "block");
+									$("#page7-word2").css("display", "none");
+									$("#no").html(image_count);
+								}
+								setTimeout(function(){
+									$("#progress > span").css("width", (click_count+200)/20+"%");
+								},500);
+								break;
+							}
+						}
+
+						if (index > 1 && index < max_animate_pages) {
+							eval("page"+index+".simulate();page"+(index+1)+".clear();page"+(index-1)+".clear();");
+						}
+						else {
+							if (index === 1) {
+								eval("page"+index+".simulate();page"+(index+1)+".clear();");
+							}else{
+								eval("page"+index+".simulate();page"+(index-1)+".clear();");
+							}
 						}
 					}
-				}
-			});
-		});
+				});
+			}	
+		}
 		WeixinApi.ready(function(Api) {
 		    // 微信分享的数据
 		    var wxData = {
-		        "imgUrl" : 'http://api.heypj.com/source/page1/topic.png',
+		        "imgUrl" : 'http://api.heypj.com/static/source/page1/topic.png',
 		        "link" : 'http://api.heypj.com',
 		        "desc" : '绽放粉红十月，我还是我',
 		        "title" : "绽放粉红十月，我还是我"
