@@ -1,0 +1,49 @@
+div,img {
+	-webkit-transform: translate3d(0,0,0);
+}
+#app {
+	width: 100%;
+	height: 100%;
+}
+#bubbles {
+	position: absolute;
+	z-index: 0;
+	opacity: .3;
+}
+.background {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 50;
+}
+#page1 {
+	-webkit-perspective: 1000px;
+}
+#biglogo {
+	height: 100%;
+	-webkit-transition: all .1s linear;
+	-webkit-transform: rotateY(-30deg);
+}
+div > svg {
+	position: absolute;
+}
+.arrow {
+	bottom: 1em;
+	width: 36px;
+	height: 44px;
+	left: 50%;
+	margin-left: -18px;
+	z-index: 700;
+	-webkit-animation: up 1.6s ease-in-out infinite;
+}
+@-webkit-keyframes up {
+	0%{-webkit-transform:translate3d(0,0,0);opacity: 1}
+	75%,100%{-webkit-transform:translate3d(0,-100%,0);opacity:0}
+}
+.small_logo {
+	width: 60%;
+	top: -35%;
+	right: -5%;
+	z-index: 100;
+}

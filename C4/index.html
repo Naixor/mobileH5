@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="Author" contect="Hy">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi">
+	<title>C4</title>
+	<style>
+		html,body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+		}
+		div, img {
+			position: absolute;
+		}
+		#loading{
+			width: 100%;
+			height: 100%;
+		}
+		#loading > img {
+			position: absolute;
+			width: 30%;
+			top: 40%;
+			left: 35%;
+		}
+		#app {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div id="loading">
+		<img src="source/load.gif">
+	</div>
+	<div id="app">
+		<div id="switch" class="vertical">
+			<div id="page1" class="main">
+				<canvas id="bubbles"></canvas>
+				<div id="biglogo" class="background"></div>
+				<!-- <iframe id="biglogo" class="background" src="source/logo.svg">
+					<img id="biglogo1" class="background" src="source/logo.png"/>
+				</iframe> -->
+				<img src="source/arrow.png" class="arrow">
+			</div>
+			<div id="page2" class="main">
+				<img src="" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+			<div id="page3" class="main">
+				<img src="" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+			<div id="page4" class="main">
+				<img src="" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+			<div id="page5" class="main">
+				<img src="" class="background">
+				<img src="" class="arrow">	
+				<div class="small_logo"></div>
+			</div>
+			<div id="page6" class="main">
+				<img src="source/page6.png" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+			<div id="page7" class="main">
+				<img src="source/page7.png" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+			<div id="page8" class="main">
+				<img src="source/page8.png" class="background">
+				<img src="" class="arrow">
+				<div class="small_logo"></div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="styeelsheet/css.css">
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/js.js"></script>
+	<script src="javascript/WeixinApi.min.js"></script>
+	<script>
+	(function(window, $){
+		var loading = $("#loading"),
+			app = $("#app"),
+			biglogo = $("#biglogo"),
+			arrow = $(".arrow"),
+			small_logo = $(".small_logo"),
+			pageBackground = [0, 
+				$("#page2 > .background"), 
+				$("#page3 > .background"),
+				$("#page4 > .background"),
+				$("#page5 > .background")
+			];
+
+		var document_width = $(document).width(),
+			document_height = $(document).height();
+
+		window.app.run(function($app){
+			$app.registRes("biglogo", "source/logo.svg");
+			// $app.registRes("logo_small", "source/logo_small.svg");
+			$app.registRes("arrow", "source/arrow.png");
+			$app.registRes("page2", "source/page2.png");
+			$app.registRes("page3", "source/page3.png");
+			$app.registRes("page4", "source/page4.png");
+			$app.registRes("page5", "source/page5.png");
+			$app.initial(function(){
+				// ($app.res[ "biglogo" ]).setAttribute("height", "100%");
+				// biglogo.append($app.res[ "biglogo" ]);
+				$($app.res[ "biglogo" ]).appendTo(small_logo);
+				$($app.res[ "biglogo" ]).appendTo(biglogo);
+
+				arrow.attr("src", $app.res[ "arrow" ]);
+
+
+				for (var i = 1, len = pageBackground.length; i < len;) {
+					pageBackground[ i ].attr( "src", $app.res[ "page" + (++i) ] );
+				};
+
+				bubbles.start();
+
+				// if (document_height/document_width > 1132/640) {
+				// 	var top = (document_height - document_width*1.76875)/2;
+				// 	$(".background").css("top", top);
+				// 	top = null;
+				// }
+
+				var origin = new Orientation(document.getElementById("biglogo"));
+				origin.init();
+
+				loading.css("display", "none").remove();
+				app.css("display", "block");
+				VirticalSwitch("#switch", {
+					callback: function(index) {
+						switch(index+1){
+							case 1:{
+								bubbles.stop();
+								bubbles.start();
+								origin.init();
+
+								break;
+							}
+							case 2:{
+								bubbles.stop();
+								origin.clear();
+
+								break;
+							}
+						}
+					}
+				});
+			});
+		});
+	})(window, jQuery);
+	</script>
+</body>
+</html>
