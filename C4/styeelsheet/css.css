@@ -1,5 +1,7 @@
 div,img {
 	-webkit-transform: translate3d(0,0,0);
+	border: 0;
+	border-style: none;
 }
 #app {
 	width: 100%;
@@ -39,7 +41,7 @@ div > svg {
 }
 @-webkit-keyframes up {
 	0%{-webkit-transform:translate3d(0,0,0);opacity: 1}
-	75%,100%{-webkit-transform:translate3d(0,-100%,0);opacity:0}
+	75%,100%{-webkit-transform:translate3d(0,-44px,0);opacity:0}
 }
 .small_logo {
 	width: 60%;

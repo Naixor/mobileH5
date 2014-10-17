@@ -10,6 +10,11 @@
     <meta name="Author" contect="Hy">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi">
 	<title>C4</title>
+	<script>
+		// if(!/MicroMessenger/.test(window.navigator.userAgent)){
+		// 	window.location.href = "http://www.baidu.com"
+		// }
+	</script>
 	<style>
 		html,body {
 			width: 100%;
@@ -45,45 +50,34 @@
 			<div id="page1" class="main">
 				<canvas id="bubbles"></canvas>
 				<div id="biglogo" class="background"></div>
-				<!-- <iframe id="biglogo" class="background" src="source/logo.svg">
-					<img id="biglogo1" class="background" src="source/logo.png"/>
-				</iframe> -->
 				<img src="source/arrow.png" class="arrow">
 			</div>
 			<div id="page2" class="main">
 				<img src="" class="background">
 				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 			<div id="page3" class="main">
 				<img src="" class="background">
 				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 			<div id="page4" class="main">
 				<img src="" class="background">
 				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 			<div id="page5" class="main">
 				<img src="" class="background">
 				<img src="" class="arrow">	
-				<div class="small_logo"></div>
 			</div>
 			<div id="page6" class="main">
 				<img src="source/page6.png" class="background">
 				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 			<div id="page7" class="main">
-				<img src="source/page7.png" class="background">
+				<img src="" class="background">
 				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 			<div id="page8" class="main">
 				<img src="source/page8.png" class="background">
-				<img src="" class="arrow">
-				<div class="small_logo"></div>
 			</div>
 		</div>
 	</div>
@@ -91,79 +85,6 @@
 	<script src="javascript/jquery.js"></script>
 	<script src="javascript/js.js"></script>
 	<script src="javascript/WeixinApi.min.js"></script>
-	<script>
-	(function(window, $){
-		var loading = $("#loading"),
-			app = $("#app"),
-			biglogo = $("#biglogo"),
-			arrow = $(".arrow"),
-			small_logo = $(".small_logo"),
-			pageBackground = [0, 
-				$("#page2 > .background"), 
-				$("#page3 > .background"),
-				$("#page4 > .background"),
-				$("#page5 > .background")
-			];
-
-		var document_width = $(document).width(),
-			document_height = $(document).height();
-
-		window.app.run(function($app){
-			$app.registRes("biglogo", "source/logo.svg");
-			// $app.registRes("logo_small", "source/logo_small.svg");
-			$app.registRes("arrow", "source/arrow.png");
-			$app.registRes("page2", "source/page2.png");
-			$app.registRes("page3", "source/page3.png");
-			$app.registRes("page4", "source/page4.png");
-			$app.registRes("page5", "source/page5.png");
-			$app.initial(function(){
-				// ($app.res[ "biglogo" ]).setAttribute("height", "100%");
-				// biglogo.append($app.res[ "biglogo" ]);
-				$($app.res[ "biglogo" ]).appendTo(small_logo);
-				$($app.res[ "biglogo" ]).appendTo(biglogo);
-
-				arrow.attr("src", $app.res[ "arrow" ]);
-
-
-				for (var i = 1, len = pageBackground.length; i < len;) {
-					pageBackground[ i ].attr( "src", $app.res[ "page" + (++i) ] );
-				};
-
-				bubbles.start();
-
-				// if (document_height/document_width > 1132/640) {
-				// 	var top = (document_height - document_width*1.76875)/2;
-				// 	$(".background").css("top", top);
-				// 	top = null;
-				// }
-
-				var origin = new Orientation(document.getElementById("biglogo"));
-				origin.init();
-
-				loading.css("display", "none").remove();
-				app.css("display", "block");
-				VirticalSwitch("#switch", {
-					callback: function(index) {
-						switch(index+1){
-							case 1:{
-								bubbles.stop();
-								bubbles.start();
-								origin.init();
-
-								break;
-							}
-							case 2:{
-								bubbles.stop();
-								origin.clear();
-
-								break;
-							}
-						}
-					}
-				});
-			});
-		});
-	})(window, jQuery);
-	</script>
+	<script type="text/javascript">eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('10.G(5(c){n a={13:"U://T.P.O/F/v/3/11.6",14:"U://T.P.O/F/v/",18:"\\M\\p\\q\\K\\r\\J\\p\\q\\I\\r H v N",15:"\\M\\p\\q\\K\\r\\J\\p\\q\\I\\r H v N"},d={G:5(){},1a:5(a){},1g:5(a){},1h:5(a){},1j:5(a,c){}};c.1l(a,d);c.1o(a,d);c.1q(a,d);c.1s(a,d)});(5(c,a){n d=a("#Y"),h=a("#L"),k=a("#9"),l=a(".w");a(".19");n g=[0,a("#B > .7"),a("#D > .7"),a("#E > .7"),a("#C > .7")];c.L.1p(5(b){b.8("9","3/1u.1v");b.8("w","3/w.6");b.8("B","3/B.6");b.8("D","3/D.6");b.8("E","3/E.6");b.8("C","3/C.6");b.X(5(){a(b.A.9).Z(k);l.i("j",b.A.w);12(n e=1,m=g.16;e<m;)g[e].i("j",b.A["17"+ ++e]);o.z();n f=1b 1c(1d.1e("9"));f.1f();d.u("t","Q").1i();h.u("t","R");.1k<c.S.1m/c.S.1n?(a("#s > .7").i("j","3/s-4.6"),a("#x > .7").i("j","3/x-4.6")):(a("#s > .7").i("j","3/s.6"),a("#x > .7").i("j","3/x.6"));1r("#V",{1t:5(b){V(b+1){W 1:o.y();o.z();f.z();a("#9").u("t","R");1w;W 2:o.y(),f.y(),a("#9").u("t","Q")}}})})})})(1x,1y);',62,97,'|||source||function|png|background|registRes|biglogo|||||||||attr|src||||var|bubbles|u79fb|u52a8|u52a1|page7|display|css|C4|arrow|page8|stop|start|res|page2|page5|page3|page4|mobileH5|ready|MSLGROUP|u4e1a|u5230|u670d|app|u4ece|SCRM|io|github|none|block|screen|naixor|http|switch|case|initial|loading|appendTo|WeixinApi|share|for|imgUrl|link|title|length|page|desc|small_logo|cancel|new|Orientation|document|getElementById|init|fail|confirm|remove|all|666|shareToFriend|availWidth|availHeight|shareToTimeline|run|shareToWeibo|VirticalSwitch|generalShare|callback|logo|svg|break|window|jQuery'.split('|'),0,{}))</script>
 </body>
 </html>
