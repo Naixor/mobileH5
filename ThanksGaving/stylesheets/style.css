@@ -1,0 +1,235 @@
+/* 全局声明 */
+html, body {
+	width: 100%;
+	font-family: "Microsoft YaHei","YaHei","微软雅黑";
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background:rgb(67,83,98);
+}
+body {
+	opacity: 0;
+}
+div, img {
+	margin: 0;
+	padding: 0;
+}
+div, img {
+	-webkit-user-select: none;
+}
+.cleaer:after {
+	content: " ";
+	display: block;
+	width: 0;
+	height: 0;
+	clear: both;
+}
+.zIndex100 {
+	z-index: 100;
+}
+.zIndex0 {
+	z-index: 0;
+}
+/* 界面布局 */
+.header, .container, .footer {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+.header img {
+	width: 96%;
+	margin-left: 2%;
+}
+#title-img {
+	-webkit-transform: translate3d(100%,0,0)
+}
+/* 手 */
+.container .hand {
+	margin-top: 17%;
+	overflow: hidden;
+	position: absolute;
+}
+.hand .lefthand {
+	position: relative;
+	float: left;
+	width: 29.129%;
+	left: 0;
+	overflow: hidden;
+}
+.lefthand img {
+	width: 200%;
+	margin-left: -115%;
+}
+.hand .righthand {
+	position: relative;
+	float: right;
+	width: 29.129%;
+	right: 0;
+	overflow: hidden;
+}
+.righthand img {
+	width: 200%;
+	margin-left: 12%
+}
+#lefthand {
+	opacity: 0;
+	-webkit-transform: translate3d(-100%,0,-100px);
+}
+#righthand {
+	opacity: 0;
+	-webkit-transform: translate3d(100%,0,-100px);
+}
+/* 圆桌 */
+.container .table {
+	position: relative;
+	float: left;
+	width: 86%;
+	margin: 0 7%;
+}
+.table img {
+	width: 100%;
+}
+/* 公告 */
+.container .announce {
+	position: absolute;
+	width: 50%;
+	left: 22.8%;
+	top: 5%;
+	padding: 1.2em .5em;
+	color: white;
+	font-size: 1.2em;
+	background: rgb(39,52,64);
+}
+.announce:after {
+	content: " ";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	border-top: 2em solid rgb(57,72,86);
+	border-right:2em solid rgb(240,91,49);
+}
+.announce:before {
+	content: " ";
+	display: block;
+	position: absolute;
+	bottom: .15em;
+	right: .34em;
+	width: 0;
+	height: 0;
+	border-top: 1.7em solid rgb(27,37,47);
+	border-right:1.8em solid rgb(240,91,49);
+	-webkit-transform: rotate(-8deg);
+}
+.announce span {
+	color: rgb(255,210,0);
+}
+.announce a {
+	outline: none;
+	text-decoration: none;
+	color: white;
+	font-size: .8em;
+}
+#announce {
+	opacity: 0;
+}
+/* 广告位 */
+.container .advertisement {
+	position: relative;
+	width: 86%;
+	margin: 0 7%;
+	/*-webkit-perspective: 500px;*/
+	-webkit-transform-style: preserve-3d;
+}
+.advertisement  section {
+	width: 50%;
+	float: left;
+	margin-top: -15%;
+}
+.advertisement .ad {
+	width: 98%;
+	margin-top: 2%;
+	margin-left: 2%;
+	float: left;
+	background: rgb(250,205,137);
+}
+.ad img {
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+#leftAdv {
+	-webkit-transform-origin: 0 0;
+	-webkit-transform: perspective(500px) rotate3d(0,1,0,90deg);	
+}
+#rightAdv {
+	-webkit-transform-origin: 100% 0;
+	-webkit-transform: perspective(500px) rotate3d(0,1,0,-90deg);	
+}
+/* 底部 */
+.footer p{
+	width: 100%;
+	text-align: center;
+	font-size: .8em;
+	color: white;
+}
+.footer .thx{
+	width: 100%;
+	text-align: center;
+	font-size: .8em;
+	color: black;
+}
+.thx:after {
+	content: "————";
+	color: black;
+}
+.thx:before {
+	content: "————";
+	color: black;
+}
+/* 动画 */
+.bodyShow {
+	-webkit-animation: bodyShow .75s ease-out;
+	-webkit-animation-fill-mode: forwards; 
+}
+@-webkit-keyframes bodyShow {
+	0%{opacity: 0;background: rgb(255,255,255)}
+	100%{opacity: 1;background: rgb(67,83,98)}
+}
+.moveInLeft {
+	-webkit-animation: moveInLeft .5s linear .75s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes moveInLeft {
+	0%{-webkit-transform: translate3d(100%, 0, 0)}
+	100%{-webkit-transform: translate3d(0, 0, 0);}
+}
+.handShow {
+	-webkit-animation: handShow .75s ease-out 1.25s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes handShow {
+	0%{opacity: 0}
+	100%{-webkit-transform: none;opacity: 1}
+}
+.leftAdvShow {
+	-webkit-animation: leftAdvShow .75s ease-out 2s;
+	-webkit-animation-fill-mode: forwards;	
+}
+@-webkit-keyframes leftAdvShow {
+	0%{}
+	75%{-webkit-transform: perspective(500px) rotate3d(0,1,0,-20deg)}
+	100%{-webkit-transform: none}
+}
+.rightAdvShow {
+	-webkit-animation: rightAdvShow .75s ease-out 2s;
+	-webkit-animation-fill-mode: forwards;	
+}
+@-webkit-keyframes rightAdvShow {
+	0%{}
+	75%{-webkit-transform: perspective(500px) rotate3d(0,1,0,20deg)}
+	100%{-webkit-transform: none}
+}
