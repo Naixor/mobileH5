@@ -360,7 +360,7 @@
 	$.each(document.querySelectorAll(".stage"), function(key, val){
 		$(val).css({
 			height: stageHeight + "px",
-			top: ($(document.body).css("height") - stageHeight)/2 + "px"
+			top: ($(document.body).css("height") - stageHeight)/4 + "px"
 		});
 	});
 
@@ -389,7 +389,9 @@
 			magnifier = $("#magnifier"),
 			fe = $("#fe"),
 			ue = $("#ue"),
-			ueimage = $("#ueimage");
+			ueimage = $("#ueimage"),
+			speak1 = $("#speak1"),
+			speak2 = $("#speak2");
 
 		function startHandler(res){
 			$("#loading").css("display", "none");
@@ -412,13 +414,34 @@
 				pm.addClass('pm');
 			},0);
 
+			var speak = SVG("speak1").size("100%", "100%");
+			speak.viewbox(0, 0, 384, 272);
+			var speak_group1 = speak.group();
+			var speak_group2 = speak.group().transform({x: 55, y: 110});
+			var path = speak.path("M267 272l-55 -42l-137 -9l-75 -85l51 -104l128 -32l148 32l57 99l-24 56l-80 41z").attr({'stroke-width': 5,'stroke-dasharray': "20,20"});
+			var text = speak.text(function(add){
+				add.tspan("我是PM").attr({x: 0, y: 0});
+				add.tspan("我叫史傲娇！").attr({x: 0, y: 55});
+			})
+			speak_group1.add(path);
+			speak_group2.add(text);
+			path.animate(1000).attr({
+				fill: "rgb(118,139,192)",
+				stroke: "rgb(255,255,255)",
+				'stroke-dashoffset': 500
+			});
+			text.animate(1000).attr({
+				fill: "rgb(26,65,143)",
+				'font-size': 50
+			});
+
 			function switchNextHandler (index){
 				switch(index) {
-					case 0:{
-						floorImg.addClass('floorMoveIn');
-						break;
-					}
 					case 1:{
+						speak1.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						floorImg.addClass('floorMoveOut');
 						pm.addClass('pm-left');
 						setTimeout(function(){
@@ -434,15 +457,27 @@
 							qa.addClass('pm');
 							magnifier.addClass('magnifierMv');
 						}, 500);
+						speak2.css("display", "none");	
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						break;
 					}
 					case 3:{
+						speak2.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						setTimeout(function(){
 							fe.addClass('pm');
 						}, 500);
 						break;
 					}
 					case 4:{
+						speak2.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						setTimeout(function(){
 							ue.addClass('pm');
 						}, 500);
@@ -456,20 +491,36 @@
 			function switchPrevHandler (index){
 				switch(index){
 					case 0:{
+						speak2.css("display", "none");
 						floorImg.removeClass('floorMoveOut');
 						shoose.removeClass('shooseDown');
 						rd.removeClass('pm');
+						setTimeout(function(){
+							speak1.css("display", "block");
+						}, 1500);
 						break;
 					}
 					case 1:{
+						speak2.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						qa.removeClass('pm');
 						break;	
 					}
 					case 2:{
+						speak2.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						fe.removeClass('pm');
 						break;
 					}
 					case 3:{
+						speak2.css("display", "none");
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						ue.removeClass('pm');
 						ueimage.removeClass('hinge');
 						break;

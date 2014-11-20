@@ -506,6 +506,58 @@ img {
 		opacity: 1;
 	}
 }
+/* arrow */
+.arrow {
+	position: absolute;
+	width: 30%;
+	left: 35%;
+	top: 103%;
+	height: 5%;
+}
+.arrow .left {
+	position: absolute;
+	width: 30%;
+	height: 100%;
+	-webkit-animation: arrow 1.25s ease-out infinite;
+}
+@-webkit-keyframes arrow {
+	0%{-webkit-transform: none;opacity: 1}
+	67%{-webkit-transform: translate3d(-50%,0,0);opacity: 0}
+	100%{-webkit-transform: none;opacity: 0}
+}
+.left img {
+	position: absolute;
+	height: 100%;
+}
+.left img:nth-child(1){
+	left: 0;
+}
+.left img:nth-child(2){
+	right: 0;
+}
+.arrow .right {
+	position: absolute;
+	right: 0;	
+	height: 100%;
+	width: 70%;
+	color: rgb(0,24,117);
+}
+/* speak */
+#speak1 {
+	position: absolute;
+	left: 10%;
+	top: 15%;
+	width: 30%;
+	height: 20%;
+}
+#speak2 {
+	position: absolute;
+	left: 31%;
+	top: 13%;
+	width: 30%;
+	height: 20%;
+	display: none;
+}
 /* animation */
 .rotateInfinite {
 	-webkit-animation: rotateInfinite 1s linear infinite;
