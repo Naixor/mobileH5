@@ -86,9 +86,13 @@
 							this.node.style[key] = val;							
 						};
 					};
+					return this;
 				},
 				children: function(_){
 					return that.qsa(this.node, _)
+				},
+				on: function(type, handler){
+					this.node.addEventListener(type, handler, false);
 				}
 			}
 		}
@@ -302,69 +306,78 @@
 	}
 
 	var HerizonSwitch = function (ele, config){
-		var back = ele,
+		var that = this,
+			back = ele,
 			childrenDiv = back.children(".main"),
 			_config = $.extend({
 				switchIndex: 0,
 				moveTime: 1,
 				shake: 0.3
-			}, config),
-			nowSwitchIndex = _config.switchIndex;
+			}, config);
+		that.nowSwitchIndex = _config.switchIndex;
+		var width = back.css("width"),
+			height = back.css("height");
 
 			back.css({
 				overflow: "visible",
-				webkitTransform: "translate3d("+(-1)*nowSwitchIndex*100+"%,0%,0)",
+				webkitTransform: "translate3d("+(-1)*that.nowSwitchIndex*width+"px,0%,0)",
 				webkitTransition: "all "+_config.moveTime+"s linear"
 			});
 			$.each(childrenDiv, function(key, val){
 				$(val).css({
 					position: "absolute",
-					width: "100%",
-					height: "100%",
-					left: key*100+"%"
+					width: width+"px",
+					height: height+"px",
+					left: key*width+"px"
 				});
 			});
+		
 		var _switchIndex = function (index, callback) {
-			var length = childrenDiv.length
+			var length = childrenDiv.length;
 			if (index >= length) {
-				nowSwitchIndex = length-1;
+				that.nowSwitchIndex = length-1;
 				return;
 			}else if(index < 0){
-				nowSwitchIndex = 0;
+				that.nowSwitchIndex = 0;
 				return;
 			}
-			nowSwitchIndex = index;				
-			back.css("webkitTransform", "translate3d("+(-1)*nowSwitchIndex*100+"%,0,0)");
+			that.nowSwitchIndex = index;				
+			back.css("webkitTransform", "translate3d("+(-1)*that.nowSwitchIndex*width+"px,0,0)");
 			if (callback != undefined && callback instanceof Function) {
 				// setTimeout(function(){
-					callback(nowSwitchIndex);
+					callback(that.nowSwitchIndex);
 				// }, 1000);
 			}
-
 		}
-		_switchIndex(nowSwitchIndex);
+
+		_switchIndex(that.nowSwitchIndex);
 		return {
+			nowIndex: function(){
+				return that.nowSwitchIndex
+			},
 			switchIndex: function(index, callback) {
 				_switchIndex(index, callback);
 			},
 			switchNext: function(callback){
-				_switchIndex(nowSwitchIndex+1, callback);
+				_switchIndex(that.nowSwitchIndex+1, callback);
 			},
 			switchPrev: function(callback){
-				_switchIndex(nowSwitchIndex-1, callback);
+				_switchIndex(that.nowSwitchIndex-1, callback);
+			},
+			move: function(callback){
+				callback(this)
 			}
 		}
 	};
 
-	var stageHeight = 1.2379 * window.screen.availWidth;
-	$.each(document.querySelectorAll(".stage"), function(key, val){
-		$(val).css({
-			height: stageHeight + "px",
-			top: ($(document.body).css("height") - stageHeight)/4 + "px"
-		});
-	});
-
 	document.addEventListener("DOMContentLoaded", function(e){
+		var stageHeight = 1.2379 * window.screen.availWidth;
+		$.each(document.querySelectorAll(".stage"), function(key, val){
+			$(val).css({
+				height: stageHeight + "px",
+				top: ($(document.body).css("height") - stageHeight)/4 + "px"
+			});
+		});
 		requireIMG([
 			"./source/index/pm.png",
 			"./source/index/cloud1.png",
@@ -391,68 +404,82 @@
 			ue = $("#ue"),
 			ueimage = $("#ueimage"),
 			speak1 = $("#speak1"),
-			speak2 = $("#speak2");
+			speak2 = $("#speak2"),
+			sixPage = $("#six"),
+			rdF = $("#rd-f"),
+			qaF = $("#qa-f"),
+			feF = $("#fe-f"),
+			ueF = $("#ue-f"),
+			pmF = $("#pm-f");
+			arrow = $("#arrow");
 
 		function startHandler(res){
 			$("#loading").css("display", "none");
 			$("#container").css("display", "block");
-			var herizon = new HerizonSwitch($(".herizon"), {moveTime: 1.5}); 
-			// herizon.switchIndex(0, switchHandler);
+			var SHAKE_THRESHOLD = 3000;
+			var last_update = 0;
+			var x = y = z = last_x = last_y = last_z = 0;
+			var herizon = new HerizonSwitch($(".herizon"), {moveTime: 1}); 
 			TouchEvent.bindElement(document.body).touchLeft(function(e){
-				herizon.switchNext(switchNextHandler)
+				herizon.move(function(move){
+					if (move.nowIndex() === 0){
+						floorImg.addClass('floorMoveOut');
+						setTimeout(function(){
+							move.switchNext(switchNextHandler);											
+						}, 700);
+					}else {
+						move.switchNext(switchNextHandler);					
+					}
+				});
 			}).touchRight(function (e){
 				herizon.switchPrev(switchPrevHandler)
-			}).tap(function(e){
-
 			});
-
 
 			cloud.addClass('cloudMove');
 			floorImg.addClass('floorMoveIn');
-
 			setTimeout(function(){
 				pm.addClass('pm');
 			},0);
+			setTimeout(function(){
+				speak1.css("display", "block");
+			}, 750);
 
-			var speak = SVG("speak1").size("100%", "100%");
-			speak.viewbox(0, 0, 384, 272);
-			var speak_group1 = speak.group();
-			var speak_group2 = speak.group().transform({x: 55, y: 110});
-			var path = speak.path("M267 272l-55 -42l-137 -9l-75 -85l51 -104l128 -32l148 32l57 99l-24 56l-80 41z").attr({'stroke-width': 5,'stroke-dasharray': "20,20"});
-			var text = speak.text(function(add){
-				add.tspan("我是PM").attr({x: 0, y: 0});
-				add.tspan("我叫史傲娇！").attr({x: 0, y: 55});
-			})
-			speak_group1.add(path);
-			speak_group2.add(text);
-			path.animate(1000).attr({
-				fill: "rgb(118,139,192)",
-				stroke: "rgb(255,255,255)",
-				'stroke-dashoffset': 500
-			});
-			text.animate(1000).attr({
-				fill: "rgb(26,65,143)",
-				'font-size': 50
-			});
+			function deviceMotionHandler(eventData) {
+			    var acceleration = eventData.accelerationIncludingGravity;
+			    var curTime = new Date().getTime();
+			    if ((curTime - last_update)> 100) {
+			        var diffTime = curTime -last_update;
+			        last_update = curTime;
+			        x = acceleration.x;
+			        y = acceleration.y;
+			        z = acceleration.z;
+			        var speed = Math.abs(x +y + z - last_x - last_y - last_z) / diffTime * 10000;
+			 
+			        if (speed > SHAKE_THRESHOLD) {
+			        	window.location.href = window.location.pathname+"/main.html";
+			        }
+			        last_x = x;
+			        last_y = y;
+			        last_z = z;
+			    }
+			}
 
 			function switchNextHandler (index){
 				switch(index) {
 					case 1:{
 						speak1.css("display", "none");
 						setTimeout(function(){
+							shoose.addClass('shooseDown');						
 							speak2.css("display", "block");
-						}, 1500);
-						floorImg.addClass('floorMoveOut');
+						}, 1250);
 						pm.addClass('pm-left');
 						setTimeout(function(){
 							rd.addClass('pm');
-						}, 1000)
-						setTimeout(function(){
-							shoose.addClass('shooseDown');						
-						}, 1500);
+						}, 500);
 						break;
 					}
 					case 2:{
+						rd.addClass('rdLeave');
 						setTimeout(function(){
 							qa.addClass('pm');
 							magnifier.addClass('magnifierMv');
@@ -460,24 +487,29 @@
 						speak2.css("display", "none");	
 						setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							rd.removeClass('rdLeave')
+						}, 1250);
 						break;
 					}
 					case 3:{
+						qa.addClass('qaLeave');
 						speak2.css("display", "none");
 						setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							qa.removeClass('qaLeave')
+						}, 1250);
 						setTimeout(function(){
 							fe.addClass('pm');
 						}, 500);
 						break;
 					}
 					case 4:{
+						fe.addClass('feLeave');
 						speak2.css("display", "none");
 						setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							fe.removeClass('feLeave');
+						}, 1250);
 						setTimeout(function(){
 							ue.addClass('pm');
 						}, 500);
@@ -486,16 +518,40 @@
 						}, 1500);
 						break;
 					}
+					case 5:{
+						window.addEventListener('devicemotion',deviceMotionHandler, false);
+						speak2.css("display", "none");
+						arrow.css("display","none");
+						pm.addClass('pmLeave');
+						ue.addClass('ueLeave');
+						rdF.addClass('rd-f');
+						qaF.addClass('qa-f');
+						feF.addClass('fe-f');
+						ueF.addClass('ue-f');
+						pmF.css("display", "block");
+						setTimeout(function(){
+							pmF.addClass('pm-f')
+						},0)
+						setTimeout(function(){
+							ue.removeClass('ueLeave')
+						}, 1250);
+						setTimeout(function(){
+							$(pmF.children('img')[0]).css("webkitTransform", "translate(0,0)");
+						}, 2750)
+						sixPage.addClass('sixPageBack');
+						break;
+					}
 				}
 			}
 			function switchPrevHandler (index){
 				switch(index){
 					case 0:{
 						speak2.css("display", "none");
-						floorImg.removeClass('floorMoveOut');
+						pm.removeClass('pm-left');
 						shoose.removeClass('shooseDown');
 						rd.removeClass('pm');
 						setTimeout(function(){
+							floorImg.removeClass('floorMoveOut');
 							speak1.css("display", "block");
 						}, 1500);
 						break;
@@ -523,6 +579,21 @@
 						}, 1500);
 						ue.removeClass('pm');
 						ueimage.removeClass('hinge');
+						break;
+					}
+					case 4:{
+						window.removeEventListener('devicemotion',deviceMotionHandler, false);
+
+						arrow.css("display","block");
+						pm.removeClass('pmLeave');
+						pm.addClass('pm-left');
+						rdF.removeClass('rd-f');
+						qaF.removeClass('qa-f');
+						feF.removeClass('fe-f');
+						ueF.removeClass('ue-f');
+						pmF.css("display", "none").removeClass('pm-f');
+						sixPage.removeClass('sixPageBack');
+						$(pmF.children('img')[0]).css("webkitTransform", "translate(0,-50%)");	
 						break;
 					}
 				}

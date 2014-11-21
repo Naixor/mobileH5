@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
     <meta name="Author" contect="Hy">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi">
+	<meta name="viewport" content="width=320,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title>感恩节·一去吃FUN</title>
 	<link rel="stylesheet" href="stylesheets/index.css">
 </head>
@@ -19,7 +19,7 @@
 	</div>
 	<div id="container" class="container">
 		<div class="herizon">
-			<div class="main one">
+			<div id="one" class="main">
 				<div class="stage">
 					<div id="floor">
 						<img id="floor-img" src="source/index/floor.png">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="main two">
+			<div id="two" class="main two">
 				<div class="stage">
 					<div class="clock">
 						<img src="source/index/clock.png">
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="main three">
+			<div id="three" class="main three">
 				<div class="stage">
 					<div class="clock">
 						<img src="source/index/clock.png">
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="main four">
+			<div id="four" class="main four">
 				<div class="stage">
 					<div class="clock">
 						<img src="source/index/clock.png">
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="main five">
+			<div id="five" class="main five">
 				<div class="stage">
 					<div class="uetable">
 						<img src="source/index/table-ue.png" alt="">
@@ -97,55 +97,76 @@
 					</div>
 				</div>
 			</div>
+			<div id="six" class="main six">
+				<div class="stage">
+					<div id="rd-f" class="sprite">
+						<img src="source/index/rd.png" alt="">
+					</div>
+					<div id="qa-f" class="sprite">
+						<img src="source/index/qa.png" alt="">
+					</div>
+					<div id="fe-f" class="sprite">
+						<img src="source/index/fe.png" alt="">
+					</div>
+					<div id="ue-f" class="sprite">
+						<img src="source/index/ue2.png" alt="">
+					</div>
+					<div class="shake">摇摇出惊喜</div>
+				</div>
+			</div>
 		</div>
 		<div class="stage">
 			<div id="pm" class="sprite">
 				<img src="source/index/pm.png">
 			</div>
-			<div id="speak1">
-
+			<div id="pm-f" class="sprite">
+				<img src="source/index/pm2.png">
 			</div>
-			<div id="speak2">
-				<svg x="0" y="0" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewport="0 0 384 272" viewbox="0 0 444 315">
+			<div id="speak1">
+				<svg x="0" y="0" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewport="0 0 384 272" viewbox="0 0 384 272">
 					<g>
-						<path d="M134 315l-17 -57l-87 -47l-30 -66l66 -117l156 -28l164 38l58 115l-90 104l-158 11z" fill="rgb(118,139,192)" stroke-width="5" stroke="white" stroke-dasharray="20,20">
+						<path d="M267 272l-55 -42l-137 -9l-75 -85l51 -104l128 -32l148 32l57 99l-24 56l-80 41z" fill="rgb(118,139,192)" stroke-width="5" stroke="white" stroke-dasharray="20,20">
 					</g>
-					<g transform="translate(65,150)">
-						<text fill="white" font-size="65" visibility="hidden">需
-							<set attributeName="visibility" attributeType="CSS" to="visible" begin="1.5s" dur=".5s" fill="freeze" />
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="0" to="1.2" begin="1.5s" dur=".5s" fill="freeze"/>
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="1.2" to="1" begin="2s" dur=".1s" fill="freeze"/>
-						</text>
-						<text x="70" fill="white" font-size="65" visibility="hidden">求
-							<set attributeName="visibility" attributeType="CSS" to="visible" begin="1.5s" dur=".5s" fill="freeze" />
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="0" to="1.2" begin="1.5s" dur=".5s" fill="freeze"/>
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="1.2" to="1" begin="2s" dur=".1s" fill="freeze"/>
-						</text>
-						<text x="140" fill="white" font-size="65" visibility="hidden">有
-							<set attributeName="visibility" attributeType="CSS" to="visible" begin="1.5s" dur=".5s" fill="freeze" />
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="0" to="1.2" begin="1.5s" dur=".5s" fill="freeze"/>
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="1.2" to="1" begin="2s" dur=".1s" fill="freeze"/>
-						</text>
-						<text x="210" fill="white" font-size="65" visibility="hidden">变
-							<set attributeName="visibility" attributeType="CSS" to="visible" begin="1.5s" dur=".5s" fill="freeze" />
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="0" to="1.2" begin="1.5s" dur=".5s" fill="freeze"/>
-							<animateTransform attributeName="transform" attributeType="XML" type="scale" from="1.2" to="1" begin="2s" dur=".1s" fill="freeze"/>
+					<g transform="translate(55,110)">
+						<text fill="rgb(26,65,143)" font-size="50">
+							<tspan x="0" y="0">我是PM</tspan>
+							<tspan x="0" y="55">我叫史傲娇！</tspan>
 						</text>
 					</g>
 				</svg>
 			</div>
-			<div class="arrow">
+			<div id="speak2">
+				<svg x="0" y="0" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewport="0 0 444 315" viewbox="0 0 444 315">
+					<g>
+						<path d="M134 315l-17 -57l-87 -47l-30 -66l66 -117l156 -28l164 38l58 115l-90 104l-158 11z" fill="rgb(118,139,192)" stroke-width="5" stroke="white" stroke-dasharray="20,20">
+					</g>
+					<g transform="translate(65,150)">
+						<text fill="white" font-size="65">需
+						</text>
+						<text x="70" fill="white" font-size="65">求
+						</text>
+						<text x="140" fill="white" font-size="65">有
+						</text>
+						<text x="210" fill="white" font-size="65">变
+						</text>
+					</g>
+				</svg>
+			</div>
+			<div id="arrow" class="arrow">
 				<div class="left">
 					<img src="source/index/arrow.png">
 					<img src="source/index/arrow.png">
 				</div>
 				<div class="right">
-					向右滑动
+					<svg x="0" y="0" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewport="0 0 78 23" viewbox="0 0 78 23">
+						<g>
+							<text x="0" y="0" dy="19" fill="rgb(0,24,117)" font-family="微软雅黑" font-size="18">向右滑动</text>
+						</g>
+					</svg>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="javascripts/svg.min.js"></script>
 	<script src="javascripts/index.js"></script>
 </body>
 </html>

@@ -46,6 +46,9 @@ img {
 .sprite img {
 	width: 100%;
 }
+.two, .three, .four, .five, .six {
+	overflow: hidden;
+}
 /* stage */
 .stage {
 	position: absolute;
@@ -62,7 +65,7 @@ img {
 	position: absolute;
 	width: 200%;
 	height: 100%;
-	-webkit-animation: cloudMove 7s linear infinite;
+	/*-webkit-animation: cloudMove 42s linear infinite;*/
 }
 .cloud1 {
 	position: absolute;
@@ -115,10 +118,11 @@ img {
 	width: 51.85%;
 	height: 46.5%;
 	bottom: 13.5%;
-	left: 16.67%;
+	left: 20%;
+	/*left: 16.67%;*/
 }
 #pm img {
-	-webkit-transition: all 1s ease-in-out;
+	-webkit-transition: all .75s ease-in-out;
 	-webkit-transform: translate(0,-250%);
 }
 #pm:before {
@@ -147,7 +151,15 @@ img {
 }
 @-webkit-keyframes pmLeft {
 	0%{-webkit-transform: none;}
-	100%{-webkit-transform: translate(-26%,0)}
+	100%{-webkit-transform: translate(-35%,0)}
+}
+.pmLeave {
+	-webkit-animation: pmLeave .5s linear;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes pmLeave {
+	0%{-webkit-transform: none}
+	100%{-webkit-transform: translate(-150%,0)}
 }
 /* @pageOne floor */
 #floor {
@@ -196,6 +208,14 @@ img {
 	z-index: -1;
 	-webkit-transition: all .75s ease-in-out .25s;
 	-webkit-transform: scale(0,0);
+}
+.rdLeave {
+	-webkit-animation: rdLeave .35s linear;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes rdLeave {
+	0%{-webkit-transform: none;}
+	100%{-webkit-transform: translate(120%,0)}
 }
 /* @pageTwo */
 .clock{
@@ -372,6 +392,14 @@ img {
 	-webkit-transition: all .75s ease-in-out .25s;
 	-webkit-transform: scale(0,0);
 }
+.qaLeave {
+	-webkit-animation: qaLeave .35s linear;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes qaLeave {
+	0%{-webkit-transform: none;}
+	100%{-webkit-transform: translate(150%,0)}
+}
 /* @PageFour */
 /* fe */
 #fe {
@@ -397,6 +425,14 @@ img {
 	z-index: -1;
 	-webkit-transition: all .75s ease-in-out .25s;
 	-webkit-transform: scale(0,0);
+}
+.feLeave {
+	-webkit-animation: feLeave .35s linear;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes feLeave {
+	0%{-webkit-transform: none;}
+	100%{-webkit-transform: translate(120%,0)}
 }
 /* fetable */
 .fetable {
@@ -454,6 +490,14 @@ img {
 	-webkit-transition: all .75s ease-in-out .25s;
 	-webkit-transform: scale(0,0);
 }
+.ueLeave {
+	-webkit-animation: ueLeave .35s linear;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes ueLeave {
+	0%{-webkit-transform: none;}
+	100%{-webkit-transform: translate(150%,0)}
+}
 /* uetable */
 .uetable {
 	position: absolute;
@@ -506,6 +550,93 @@ img {
 		opacity: 1;
 	}
 }
+/* @PageSix */
+#pm-f {
+	width: 51.85%;
+	height: 46.5%;
+	bottom: 20.5%;
+	left: 26.67%;
+	overflow: hidden;
+	display: none;
+	-webkit-transition: all .5s linear 1.6s;
+	-webkit-transform: scale(0,0);
+}
+#pm-f img {
+	-webkit-transform: translate(0,-50%)
+}
+.pm-f {
+	-webkit-transform: scale(1,1) !important;
+}
+#rd-f {
+	width: 34.15%;
+	height: 40.8%;
+	left: -34.15%;
+	top: 0;
+}
+.rd-f {
+	-webkit-animation: rdF .5s linear 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes rdF {
+	0%{}
+	100%{-webkit-transform: translate(90%,0) rotate(25deg)}
+}
+#qa-f {
+	width: 25.3%;
+	height: 43%;
+	left: -25.3%;
+	bottom: 0;
+}
+.qa-f {
+	-webkit-animation: qaF .5s linear 1.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes qaF {
+	0%{}
+	100%{-webkit-transform: translate(84%,0) rotate(25deg)}
+}
+#fe-f {
+	width: 34%;
+	height: 44%;
+	right:-34%;
+	top: 18%;
+}
+.fe-f {
+	-webkit-animation: feF .5s linear 1.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes feF {
+	0%{}
+	100%{-webkit-transform: translate(-78%,0) rotate(-30deg)}
+}
+#ue-f{
+	width: 33.4%;
+	height: 43%;
+	right: -33.4%;
+	bottom: -10%;
+}
+.ue-f {
+	-webkit-animation: ueF .5s linear 1.6s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes ueF {
+	0%{}
+	100%{-webkit-transform: translate(-89%,0) rotate(-30deg)}
+}
+.sixPageBack {
+	-webkit-animation: sixPageBack 1s linear 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes sixPageBack {
+	0%{background: -webkit-radial-gradient(circle closest-side, rgb(26, 61 ,131), rgb(26, 61 ,131))}
+	100%{background: -webkit-radial-gradient(circle closest-side, rgb(139,173,244), rgb(26, 61 ,131) 80%, rgb(26, 61 ,131))}
+}
+.shake {
+	margin: 103% auto;
+	width: 8em;
+	height: 1.2em;
+	text-align: center;
+}
 /* arrow */
 .arrow {
 	position: absolute;
@@ -549,6 +680,7 @@ img {
 	top: 15%;
 	width: 30%;
 	height: 20%;
+	display: none;
 }
 #speak2 {
 	position: absolute;
@@ -567,14 +699,14 @@ img {
 	100%{-webkit-transform: rotate(360deg)}
 }
 .cloudMove {
-	-webkit-animation: cloudMove 4s linear infinite;
+	-webkit-animation: cloudMove 16s linear infinite;
 }
 @-webkit-keyframes cloudMove {
 	0%{-webkit-transform: translate(0,0)}
 	100%{-webkit-transform: translate(-50%,0)}
 }
 .floorMoveIn {
-	-webkit-animation: floorMoveIn 1.5s linear;
+	-webkit-animation: floorMoveIn .75s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes floorMoveIn {
@@ -582,10 +714,10 @@ img {
 	100%{-webkit-transform: none}	
 }
 .floorMoveOut {
-	-webkit-animation: floorMoveOut 1.5s linear;
+	-webkit-animation: floorMoveOut 1s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes floorMoveOut {
 	0%{-webkit-transform: translate(0,0)}
-	100%{-webkit-transform: translate(-100%,0)}
+	100%{-webkit-transform: translate(-80%,0)}
 }
