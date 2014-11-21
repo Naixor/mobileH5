@@ -526,17 +526,16 @@
 						ue.addClass('ueLeave');
 						rdF.addClass('rd-f');
 						qaF.addClass('qa-f');
-						feF.addClass('fe-f');
+						feF.addClass('fe-f saliva');
 						ueF.addClass('ue-f');
-						pmF.css("display", "block");
 						setTimeout(function(){
-							pmF.addClass('pm-f')
-						},0)
+							pmF.css("display", "block");
+						}, 750);
 						setTimeout(function(){
 							ue.removeClass('ueLeave')
 						}, 1250);
 						setTimeout(function(){
-							$(pmF.children('img')[0]).css("webkitTransform", "translate(0,0)");
+							$(pmF.children('img')[1]).css("webkitTransform", "translate(0,0)");
 						}, 2750)
 						sixPage.addClass('sixPageBack');
 						break;
@@ -583,7 +582,6 @@
 					}
 					case 4:{
 						window.removeEventListener('devicemotion',deviceMotionHandler, false);
-
 						arrow.css("display","block");
 						pm.removeClass('pmLeave');
 						pm.addClass('pm-left');
@@ -591,7 +589,7 @@
 						qaF.removeClass('qa-f');
 						feF.removeClass('fe-f');
 						ueF.removeClass('ue-f');
-						pmF.css("display", "none").removeClass('pm-f');
+						pmF.css("display", "none");
 						sixPage.removeClass('sixPageBack');
 						$(pmF.children('img')[0]).css("webkitTransform", "translate(0,-50%)");	
 						break;

@@ -236,7 +236,7 @@ img {
 	left: 48.24%;
 	bottom: 0;
 	-webkit-transform: translate(500%,0);
-	-webkit-transition: all 2s linear;
+	-webkit-transition: all 1s linear;
 }
 .shoose:after {
 	content: " ";
@@ -260,7 +260,7 @@ img {
 	-webkit-transform: translate(0,0) !important;
 }
 .shooseDown:after {
-	-webkit-animation: shooseDownAfter 2s cubic-bezier(.5,.13,.69,.31) !important;
+	-webkit-animation: shooseDownAfter 1s cubic-bezier(.5,.13,.69,.31) !important;
 	-webkit-animation-fill-mode: forwards !important;
 } 
 @-webkit-keyframes shooseDownAfter {
@@ -269,13 +269,13 @@ img {
 	100%{-webkit-transform: scale(1,1)}
 }
 .shooseDown img{
-	-webkit-animation: shooseDown 1s linear !important;
+	-webkit-animation: shooseDown 1s cubic-bezier(.5,.13,.69,.31) !important;
 	-webkit-animation-fill-mode: forwards !important;
 }
 @-webkit-keyframes shooseDown {
 	0%{-webkit-transform: translate(0,-1000%) rotate(0)}
 	/*25%{-webkit-transform: translate(0,-1500%) rotate(342deg)}*/
-	100%{-webkit-transform: translate(0,0) rotate(1080deg)}
+	100%{-webkit-transform: translate(0,0) rotate(720deg)}
 }
 /* @pageTwo rd table */
 .rdtable {
@@ -559,13 +559,25 @@ img {
 	overflow: hidden;
 	display: none;
 	-webkit-transition: all .5s linear 1.6s;
-	-webkit-transform: scale(0,0);
 }
-#pm-f img {
+#pm-f >img {
 	-webkit-transform: translate(0,-50%)
 }
 .pm-f {
 	-webkit-transform: scale(1,1) !important;
+}
+#pm-f .brow {
+	position: absolute;
+	width: 33%;
+	height: 3%;
+	left: 26%;
+	top: 18.5%;
+	z-index: 100;
+	-webkit-animation: brow 2s linear infinite;
+}
+@-webkit-keyframes brow {
+	0%,40%,80%,100%{-webkit-transform: translate(0,0)}
+	20%,60%{-webkit-transform: translate(0,-100%)}
 }
 #rd-f {
 	width: 34.15%;
@@ -601,6 +613,23 @@ img {
 	right:-34%;
 	top: 18%;
 }
+#fe-f:after {
+	position: absolute;
+	background: white;
+	content: " ";
+	-webkit-transform:rotate(30deg);
+	top: 44%;
+	left: 37%;
+}
+.saliva:after {
+	-webkit-animation: saliva 1s linear 1.7s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes saliva {
+	0%{}
+	100%{width: 3%;border-radius: 50% 50% 20% 20%;height: 8%}
+}
+
 .fe-f {
 	-webkit-animation: feF .5s linear 1.2s;
 	-webkit-animation-fill-mode: forwards;
@@ -635,7 +664,7 @@ img {
 	margin: 105% auto;
 	width: 8em;
 	height: 1.4em;
-	font-size: 1.2em
+	font-size: 1.2em;
 	color: white;
 	text-align: center;
 }
