@@ -154,7 +154,7 @@ img {
 	100%{-webkit-transform: translate(-35%,0)}
 }
 .pmLeave {
-	-webkit-animation: pmLeave .5s linear;
+	-webkit-animation: pmLeave .2s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes pmLeave {
@@ -210,7 +210,7 @@ img {
 	-webkit-transform: scale(0,0);
 }
 .rdLeave {
-	-webkit-animation: rdLeave .35s linear;
+	-webkit-animation: rdLeave .2s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes rdLeave {
@@ -269,13 +269,13 @@ img {
 	100%{-webkit-transform: scale(1,1)}
 }
 .shooseDown img{
-	-webkit-animation: shooseDown 2s linear !important;
+	-webkit-animation: shooseDown 1s linear !important;
 	-webkit-animation-fill-mode: forwards !important;
 }
 @-webkit-keyframes shooseDown {
 	0%{-webkit-transform: translate(0,-1000%) rotate(0)}
-	25%{-webkit-transform: translate(0,-1500%) rotate(342deg)}
-	100%{-webkit-transform: translate(0,0) rotate(1800deg)}
+	/*25%{-webkit-transform: translate(0,-1500%) rotate(342deg)}*/
+	100%{-webkit-transform: translate(0,0) rotate(1080deg)}
 }
 /* @pageTwo rd table */
 .rdtable {
@@ -393,7 +393,7 @@ img {
 	-webkit-transform: scale(0,0);
 }
 .qaLeave {
-	-webkit-animation: qaLeave .35s linear;
+	-webkit-animation: qaLeave .2s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes qaLeave {
@@ -427,7 +427,7 @@ img {
 	-webkit-transform: scale(0,0);
 }
 .feLeave {
-	-webkit-animation: feLeave .35s linear;
+	-webkit-animation: feLeave .2s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes feLeave {
@@ -491,7 +491,7 @@ img {
 	-webkit-transform: scale(0,0);
 }
 .ueLeave {
-	-webkit-animation: ueLeave .35s linear;
+	-webkit-animation: ueLeave .2s linear;
 	-webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes ueLeave {
@@ -632,9 +632,11 @@ img {
 	100%{background: -webkit-radial-gradient(circle closest-side, rgb(139,173,244), rgb(26, 61 ,131) 80%, rgb(26, 61 ,131))}
 }
 .shake {
-	margin: 103% auto;
+	margin: 105% auto;
 	width: 8em;
-	height: 1.2em;
+	height: 1.4em;
+	font-size: 1.2em
+	color: white;
 	text-align: center;
 }
 /* arrow */
