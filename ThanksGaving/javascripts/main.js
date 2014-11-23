@@ -251,7 +251,6 @@
 
 			$("#tips").on("click", tipsClickHandler, false);
 			function tipsClickHandler(e){
-				e.stopPropagation();
 				if (e.target != document.getElementById("label")) {
 					$("#tips").css("display", "none");				
 				};
