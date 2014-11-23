@@ -15,7 +15,7 @@
 				this.node = _
 			}else if(type === "[object String]"){
 				try{
-					this.node = this.qs(parentNode, _)				
+					this.node = this.qs(parentNode, _)			
 				}catch(e){
 					throw e;
 				}
@@ -70,6 +70,18 @@
 					that._removeClass(this.node, classNames);
 					return this
 				},
+				html: function(){
+					if (arguments.length === 0) {
+						return this.node.innerHTML;
+					}else if (arguments.length === 1) {
+						if ($.type(arguments[0]) === "[object String]") {
+							this.node.innerHTML = arguments[0];
+							return this;
+						}else {
+							throw new Error("参数类型错误");
+						}
+					}
+				},
 				css: function(){
 					if (arguments.length === 1) {
 						var o = arguments[0];
@@ -98,6 +110,9 @@
 		}
 		return new Node(_)
 	}
+	$.os = (function(navigator){
+		return /Android|iPhone/.exec(navigator.userAgent) && /Android|iPhone/.exec(navigator.userAgent)[0];
+	})(window.navigator)
 	$.type = function(_){
 		return Object.prototype.toString.call(_)
 	}
@@ -159,7 +174,33 @@
 		}
 		return oldOne;
 	}
+	$.ajax = function(type, url, obj, callback, async){
+		var xhr = new XMLHttpRequest(),
+			_async = async,
+			_obj = obj || null;
 
+		if ($.type(type) !== "[object String]") {
+			throw new Error("参数类型错误");
+		}
+		if (/POST|GET/.exec(type.toUpperCase()) === null) {
+			throw new Error("未知的参数:"+type);
+		}
+
+		xhr.onreadystatechange = function (){
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					callback(xhr.responseText)
+				}else {
+					callback("field", xhr.status)
+				}
+			}
+		}
+		if ($.type(_async) !== "[object Boolean]") {
+			_async = true;
+		}
+		xhr.open(type, url, _async || true);
+		xhr.send(_obj);
+	}
 	var TouchEvent = (function(navigator) {
 		var Start = "touchstart",
 			End = "touchend",
@@ -371,7 +412,8 @@
 	};
 
 	document.addEventListener("DOMContentLoaded", function(e){
-		var stageHeight = 1.2379 * window.screen.availWidth;
+		var stageHeight = 1.2379 * $(document.body).css("width");
+		// alert(stageHeight);
 		$.each(document.querySelectorAll(".stage"), function(key, val){
 			$(val).css({
 				height: stageHeight + "px",
@@ -405,6 +447,7 @@
 			ueimage = $("#ueimage"),
 			speak1 = $("#speak1"),
 			speak2 = $("#speak2"),
+			speak3 = $("#speak3"),
 			sixPage = $("#six"),
 			rdF = $("#rd-f"),
 			qaF = $("#qa-f"),
@@ -465,12 +508,16 @@
 			}
 
 			function switchNextHandler (index){
+				var speakTimeout = undefined;
 				switch(index) {
 					case 1:{
 						speak1.css("display", "none");
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						setTimeout(function(){
 							shoose.addClass('shooseDown');						
-							speak2.css("display", "block");
 						}, 1250);
 						pm.addClass('pm-left');
 						setTimeout(function(){
@@ -485,8 +532,11 @@
 							magnifier.addClass('magnifierMv');
 						}, 500);
 						speak2.css("display", "none");	
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
+						}, 1500);
+						setTimeout(function(){
 							rd.removeClass('rdLeave')
 						}, 1250);
 						break;
@@ -494,8 +544,11 @@
 					case 3:{
 						qa.addClass('qaLeave');
 						speak2.css("display", "none");
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
+						}, 1500);
+						setTimeout(function(){
 							qa.removeClass('qaLeave')
 						}, 1250);
 						setTimeout(function(){
@@ -506,8 +559,11 @@
 					case 4:{
 						fe.addClass('feLeave');
 						speak2.css("display", "none");
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
+						}, 1500);
+						setTimeout(function(){
 							fe.removeClass('feLeave');
 						}, 1250);
 						setTimeout(function(){
@@ -520,6 +576,7 @@
 					}
 					case 5:{
 						window.addEventListener('devicemotion',deviceMotionHandler, false);
+						clearTimeout(speakTimeout);
 						speak2.css("display", "none");
 						arrow.css("display","none");
 						pm.addClass('pmLeave');
@@ -530,9 +587,11 @@
 						ueF.addClass('ue-f');
 						setTimeout(function(){
 							pmF.css("display", "block");
+							speak2.css("display", "none");
 						}, 750);
 						setTimeout(function(){
 							ue.removeClass('ueLeave')
+							speak3.css("display", "block");
 						}, 1250);
 						setTimeout(function(){
 							$(pmF.children('img')[1]).css("webkitTransform", "translate(0,0)");
@@ -581,7 +640,11 @@
 						break;
 					}
 					case 4:{
+						setTimeout(function(){
+							speak2.css("display", "block");
+						}, 1500);
 						window.removeEventListener('devicemotion',deviceMotionHandler, false);
+						speak3.css("display", "none");	
 						arrow.css("display","block");
 						pm.removeClass('pmLeave');
 						pm.addClass('pm-left');

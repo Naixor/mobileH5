@@ -35,6 +35,7 @@ img {
 }
 
 .herizon {
+	position: absolute;
 	width: 100%;
 	height: 100%;
 }
@@ -661,10 +662,10 @@ img {
 	100%{background: -webkit-radial-gradient(circle closest-side, rgb(139,173,244), rgb(26, 61 ,131) 80%, rgb(26, 61 ,131))}
 }
 .shake {
-	margin: 105% auto;
+	margin: 107% auto;
 	width: 8em;
 	height: 1.4em;
-	font-size: 1.2em;
+	font-size: 1.4em;
 	color: white;
 	text-align: center;
 }
@@ -720,6 +721,14 @@ img {
 	width: 30%;
 	height: 20%;
 	display: none;
+}
+#speak3 {
+	position: absolute;
+	display: none;
+	left: 43%;
+	top: 5%;
+	width: 35%;
+	height: 20%;
 }
 /* animation */
 .rotateInfinite {

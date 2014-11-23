@@ -31,20 +31,20 @@
 		</div>
 		<div id="announce" class="announce zIndex100">
 			是的 , 11-27 , 我们qa-party请大家<span>免费吃早餐</span> ! 拉上你的好基友一起来吃饭吧~ </br></br>
-			<a href="#" onclick="javascript:void(0)">如何报名？</a>
+			<a id="how" href="#" onclick="javascript:void(0)">如何报名？</a>
 		</div>
 		<div class="advertisement clear">
 			<section id="leftAdv">
 				<div class="ad">
-					<img src="source/main/ad1.png">
+					<img id="ad1" src="source/main/zhongce.png">
 				</div>
 			</section>
 			<section id="rightAdv">
 				<div class="ad">
-					<img src="source/main/ad2.png">
+					<img id="ad2" src="source/main/dida.png">
 				</div>
 				<div class="ad">
-					<img src="source/main/ad2.png">
+					<img id="ad3" src="source/main/waimai.png">
 				</div>
 			</section>
 		</div>
@@ -53,6 +53,50 @@
 		<p>下载app领取免费早餐券</p>
 		<p class="thx">&nbsp&nbsp感谢FEX-QA提供技术支持&nbsp&nbsp</p>
 	</div>
+	<div id="tips">
+		<div id="label" class="label"></div>	
+	</div>
+	<script src="javascripts/weixinapi.js"></script>
+	<script>
+		WeixinApi.ready(function(Api) {
+		    // 微信分享的数据
+		    var wxData = {
+		        "appId": "", // http://nsqazp.duapp.com/thanksgaving/source/index/pm.png
+		        "imgUrl" : "http://naixor.github.io/mobileH5/ThanksGaving/source/index/logo.png",
+		        "link" : "http://naixor.github.io/mobileH5/ThanksGaving/",
+		        "desc" : "不好啦，百度某PM搞大他们的肚子啦！",
+		        "title" : "不好啦，百度某PM搞大他们的肚子啦！"
+		    };
+
+		    // 分享的回调
+		    var wxCallbacks = {
+		        // 分享操作开始之前
+		        ready : function() {
+		        },
+		        // 分享被用户自动取消
+		        cancel : function(resp) {
+		        },
+		        // 分享失败了
+		        fail : function(resp) {
+		        },
+		        // 分享成功
+		        confirm : function(resp) {
+
+		        },
+		        // 整个分享过程结束
+		        all : function(resp,shareTo) {
+		        }
+		    };
+
+		    Api.shareToFriend(wxData, wxCallbacks);
+
+		    Api.shareToTimeline(wxData, wxCallbacks);
+
+		    Api.shareToWeibo(wxData, wxCallbacks);
+
+		    Api.generalShare(wxData,wxCallbacks);
+		});
+	</script>
 	<script src="javascripts/main.js"></script>
 </body>
 </html>
