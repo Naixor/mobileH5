@@ -132,10 +132,37 @@ div, img {
 	outline: none;
 	text-decoration: none;
 	color: white;
-	font-size: .8em;
+	font-size: .7em;
 }
 #announce {
 	opacity: 0;
+}
+#how {
+	display: block;
+	width: 5.5em;
+	-webkit-animation: bounce 3s linear infinite;
+}
+@-webkit-keyframes bounce {
+  0%, 10%, 26%, 40%, 50% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  20%, 21% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -0.75em, 0);
+  }
+
+  35% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -0.375em, 0);
+  }
+
+  45% {
+    -webkit-transform: translate3d(0,0.1em,0);
+  }
 }
 /* 广告位 */
 .container .advertisement {
@@ -214,8 +241,8 @@ div, img {
 }
 .label a {
 	outline: none;
-	text-decoration: none;
-	/*color: ;*/
+	text-decoration: underline;
+	color: yellow;
 }
 .label t {
 	font-size: 1em;
