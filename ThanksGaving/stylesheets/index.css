@@ -50,6 +50,9 @@ img {
 .two, .three, .four, .five, .six {
 	overflow: hidden;
 }
+#rdImg1, #qaImg1, #feImg1, #ueImg1 {
+	display: none;
+}
 /* stage */
 .stage {
 	position: absolute;

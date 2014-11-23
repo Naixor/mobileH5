@@ -426,10 +426,12 @@
 			"./source/index/cloud2.png",
 			"./source/index/floor.png",
 			"./source/index/rd.png",
+			"./source/index/rd2.png",
 			"./source/index/table-rd.png",
 			"./source/index/shoose.png",
 			"./source/index/clock.png",
 			"./source/index/qa.png",
+			"./source/index/qa2.png",
 			"./source/index/table-qa.png",
 			"./source/index/magnifier.png",
 			"./source/index/paper.png"
@@ -448,6 +450,14 @@
 			speak1 = $("#speak1"),
 			speak2 = $("#speak2"),
 			speak3 = $("#speak3"),
+			rdImg1 = $("#rdImg1"),
+			rdImg2 = $("#rdImg2"),
+			qaImg1 = $("#qaImg1"),
+			qaImg2 = $("#qaImg2"),
+			feImg1 = $("#feImg1"),
+			feImg2 = $("#feImg2"),
+			ueImg1 = $("#ueImg1"),
+			ueImg2 = $("#ueImg2"),
 			sixPage = $("#six"),
 			rdF = $("#rd-f"),
 			qaF = $("#qa-f"),
@@ -512,10 +522,11 @@
 				switch(index) {
 					case 1:{
 						speak1.css("display", "none");
-						clearTimeout(speakTimeout);
 						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							rdImg2.css("display", "none");
+							rdImg1.css("display", "block");
+						}, 1750);
 						setTimeout(function(){
 							shoose.addClass('shooseDown');						
 						}, 1250);
@@ -535,9 +546,13 @@
 						clearTimeout(speakTimeout);
 						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							qaImg2.css("display", "none");
+							qaImg1.css("display", "block");
+						}, 1750);
 						setTimeout(function(){
-							rd.removeClass('rdLeave')
+							rd.removeClass('rdLeave');
+							rdImg1.css("display", "none");
+							rdImg2.css("display", "block");
 						}, 1250);
 						break;
 					}
@@ -547,9 +562,13 @@
 						clearTimeout(speakTimeout);
 						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							feImg2.css("display", "none");
+							feImg1.css("display", "block");
+						}, 1750);
 						setTimeout(function(){
-							qa.removeClass('qaLeave')
+							qa.removeClass('qaLeave');
+							qaImg1.css("display", "none");
+							qaImg2.css("display", "block");
 						}, 1250);
 						setTimeout(function(){
 							fe.addClass('pm');
@@ -562,9 +581,13 @@
 						clearTimeout(speakTimeout);
 						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							ueImg2.css("display", "none");
+							ueImg1.css("display", "block");
+						}, 1750);
 						setTimeout(function(){
 							fe.removeClass('feLeave');
+							feImg1.css("display", "none");
+							feImg2.css("display", "block");
 						}, 1250);
 						setTimeout(function(){
 							ue.addClass('pm');
@@ -590,7 +613,9 @@
 							speak2.css("display", "none");
 						}, 750);
 						setTimeout(function(){
-							ue.removeClass('ueLeave')
+							ue.removeClass('ueLeave');
+							ueImg1.css("display", "none");
+							ueImg2.css("display", "block");
 							speak3.css("display", "block");
 						}, 1250);
 						setTimeout(function(){
@@ -602,47 +627,69 @@
 				}
 			}
 			function switchPrevHandler (index){
+				var speakTimeout = undefined;
 				switch(index){
 					case 0:{
 						speak2.css("display", "none");
 						pm.removeClass('pm-left');
 						shoose.removeClass('shooseDown');
 						rd.removeClass('pm');
-						setTimeout(function(){
+						rdImg1.css("display", "none");
+						rdImg2.css("display", "block");
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							floorImg.removeClass('floorMoveOut');
 							speak1.css("display", "block");
-						}, 1500);
+						}, 1250);
 						break;
 					}
 					case 1:{
 						speak2.css("display", "none");
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							rdImg2.css("display", "none");
+							rdImg1.css("display", "block");
+						}, 1750);
 						qa.removeClass('pm');
+						qaImg1.css("display", "none");
+						qaImg2.css("display", "block");
 						break;	
 					}
 					case 2:{
 						speak2.css("display", "none");
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							qaImg2.css("display", "none");
+							qaImg1.css("display", "block");
+						}, 1750);
 						fe.removeClass('pm');
+						feImg1.css("display", "none");
+						feImg2.css("display", "block");
 						break;
 					}
 					case 3:{
 						speak2.css("display", "none");
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							feImg2.css("display", "none");
+							feImg1.css("display", "block");
+						}, 1750);
 						ue.removeClass('pm');
+						ueImg1.css("display", "none");
+						ueImg2.css("display", "block");
 						ueimage.removeClass('hinge');
 						break;
 					}
 					case 4:{
-						setTimeout(function(){
+						clearTimeout(speakTimeout);
+						speakTimeout = setTimeout(function(){
 							speak2.css("display", "block");
-						}, 1500);
+							ueImg2.css("display", "none");
+							ueImg1.css("display", "block");
+						}, 1750);
 						window.removeEventListener('devicemotion',deviceMotionHandler, false);
 						speak3.css("display", "none");	
 						arrow.css("display","block");

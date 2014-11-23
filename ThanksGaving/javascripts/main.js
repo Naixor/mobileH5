@@ -231,7 +231,7 @@
 			ad1.on("click", function(event){
 				var link = ($.os === "iPhone")?"https://itunes.apple.com/us/app/bai-du-wei-ren-wu/id808641624":"http://cq01-testing-sdc06.vm.baidu.com:8373/crowdtest_hzy/crowdtest/iteststore/downloadoffline";
 				$.ajax("get", "count.php",{type: "zhongce"},function(data, status){});
-				showLabel('点击<a href="'+ link +'">下载APP</a>，进入活动页面（新用户辛苦花3秒下载一下呢），支持你喜欢的菜系，即有机会免费获得价值免费早餐券or众测积分哦！~ ');
+				showLabel('众测送免费早餐券&积分豪礼啦！请点击右上角跳转按钮，选择“在Safari(浏览器)中打开”，<a href="'+link+'">下载APP</a>，参与游戏领取哦~');
 			});
 			ad2.on("click", function(event){
 				$.ajax("get", "count.php",{type: "dida"},function(data, status){
