@@ -244,6 +244,10 @@ div, img {
 	text-decoration: underline;
 	color: yellow;
 }
+.label s {
+	color: yellow;
+	text-decoration: none;
+}
 .label t {
 	font-size: 1em;
 	font-style: italic;

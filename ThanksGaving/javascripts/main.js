@@ -15,7 +15,7 @@
 				this.node = _
 			}else if(type === "[object String]"){
 				try{
-					this.node = this.qs(parentNode, _)			
+					this.node = this.qs(parentNode, _)	
 				}catch(e){
 					throw e;
 				}
@@ -202,9 +202,9 @@
 		xhr.open(_type, url, _async || true);
 		xhr.send(_obj);
 	}
+	document.body.style.fontSize = document.documentElement.clientWidth/20 + "px";
 	document.addEventListener("readystatechange", function(e){
 		if (document.readyState === "complete") {
-			document.body.style.fontSize = document.documentElement.clientWidth/20 + "px";
 			// DOM Elements		
 			var body = $(document.body);
 			var title = $("#title-img");
@@ -231,7 +231,7 @@
 			ad1.on("click", function(event){
 				var link = ($.os === "iPhone")?"https://itunes.apple.com/us/app/bai-du-wei-ren-wu/id808641624":"http://cq01-testing-sdc06.vm.baidu.com:8373/crowdtest_hzy/crowdtest/iteststore/downloadoffline";
 				$.ajax("get", "count.php",{type: "zhongce"},function(data, status){});
-				showLabel('众测送免费早餐券&积分豪礼啦！请点击右上角跳转按钮，选择“在Safari(浏览器)中打开”，<a href="'+link+'">下载APP</a>，参与游戏领取哦~');
+				showLabel('众测送免费早餐券&积分豪礼啦！请点击右上角跳转按钮，选择<s>“在Safari(浏览器)中打开”</s>，<a href="'+link+'">下载APP</a>，参与游戏领取哦~');
 			});
 			ad2.on("click", function(event){
 				$.ajax("get", "count.php",{type: "dida"},function(data, status){
