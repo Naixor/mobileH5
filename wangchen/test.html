@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="full-screen" content="true">
+        <meta name="screen-orientation" content="portrait">
+        <meta name="x5-orientation" content="portrait" />
+        <meta name="x5-fullscreen" content="true">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache,must-revalidate">
+        <meta http-equiv="expires" content="-1">
+        <meta name="viewport" content="width=400, initial-scale=1.0,max-scale=1.0, user-scalable=no, target-densitydpi=device-dpi, minimal-ui">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>王琛的简历</title>
+        <style media="screen">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            div {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+            canvas {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            #loading img {
+            	position: fixed;
+            	top: 50%;
+            	left: 50%;
+            }
+            #main {
+                display: none;
+            }
+            .rotateInfinite {
+            	-webkit-animation: rotateInfinite 1s linear infinite;
+            }
+            @-webkit-keyframes rotateInfinite {
+            	0%{-webkit-transform: rotate(0)}
+            	100%{-webkit-transform: rotate(360deg)}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading">
+            <img id="loadimg" src="img/preload.png" class="rotateInfinite" alt=""/>
+        </div>
+        <div id="main">
+            <canvas id="canvas" width="" height=""></canvas>
+        </div>
+        <script src="./cvideo.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            var width = +getComputedStyle(document.body)['width'].replace('px', ''),
+                height = +getComputedStyle(document.body)['height'].replace('px', '');
+
+            var w = width * 0.2;
+            document.getElementById('loadimg').style.width = w + 'px';
+            document.getElementById('loadimg').style.height = w + 'px';
+            document.getElementById('loadimg').style.margin = '-'+ w/2 +'px -'+ w/2 +'px';
+            document.body.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            });
+            document.addEventListener("DOMContentLoaded", function(e) {
+                var frames = [];
+                for (var i = 1; i < 1609; i++) {
+                    frames.push('img/infiniti/' + ('000'+i).substr(-4) + '.jpg');
+                }
+                var loader = new Loader(frames);
+                var loadline = loader.__rCount * 0.3;
+                var loadIndex = 0;
+                function firePlay (i) {
+                    if (i < loadline) {
+                        if (++loadIndex > loadline) {
+                            document.body.removeChild(document.getElementById('loading'));
+                            document.getElementById('main').style.display = 'block';
+                            play();
+                            loader.off('loadfinish');
+                        }
+                    }
+                }
+                loader.on('loadfinish', firePlay);
+                frames = loader.preload();
+
+                var canvas = document.getElementById('canvas'),
+                    ctx = canvas.getContext('2d');
+
+                var ratio = 54 / 96;
+
+                if (width / height > ratio) {
+                    width = height * ratio;
+                } else {
+                    height = width / ratio;
+                }
+                canvas.width = width;
+                canvas.height = height;
+
+                var fIndex = 0;
+                function play() {
+                    if (fIndex === frames.length) {
+
+                        return;
+                    }
+                    var frame = frames[fIndex];
+                    if (frame.status === 'ready') {
+                        fIndex++;
+                        frames[fIndex].img && ctx.drawImage(frames[fIndex].img, 0, 0, width, height);
+                    }
+                    setTimeout(play, 40);
+                }
+            }, false);
+        </script>
+    </body>
+</html>
