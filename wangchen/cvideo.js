@@ -156,33 +156,9 @@
                     }
                 }
             });
-            // loader.__loadIdx++;
         });
 
         return loader.__resources;
-    }
-
-    Loader.prototype.load = function (i) {
-        var loader = this;
-        var img = new Image();
-        img.onload = (function (i) {
-            return function () {
-                loader.__resources[i].img = img;
-                loader.__resources[i].status = 'ready';
-                loader.fire('loadfinish', i);
-
-            }
-        })(i);
-        img.onerror = (function (i) {
-            return function () {
-                loader.__resources[i].status = 'ready';
-                loader.fire('loadfinish', i);
-                if (++loader.__finishCount === loader.__rCount) {
-                    loader.fire('loadallfinish');
-                }
-            }
-        })(i);
-        img.src = loader.__resources[i].url;
     }
 
     Loader.prototype.schedule = function () {
