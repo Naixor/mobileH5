@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="full-screen" content="true">
+        <meta name="screen-orientation" content="portrait">
+        <meta name="x5-orientation" content="portrait" />
+        <meta name="x5-fullscreen" content="true">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache,must-revalidate">
+        <meta http-equiv="expires" content="-1">
+        <meta name="viewport" content="width=400, initial-scale=1.0,max-scale=1.0, user-scalable=no, target-densitydpi=device-dpi, minimal-ui">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>王琛的简历</title>
+        <style media="screen">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: black;
+            }
+            div {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            notice {
+                position: absolute;
+                display: inline-block;
+                color: white;
+                font-size: 2em;
+                width: 100%;
+                top: 50%;
+                line-height: -1em;
+                text-align: center;
+                z-index: 0;
+            }
+            canvas {
+                position: absolute;
+                z-index: 1;
+                /*width: 100%;
+                height: 100%;*/
+            }
+            #loading img {
+            	position: fixed;
+            	top: 50%;
+            	left: 50%;
+                display: none;
+            }
+            #main {
+                display: none;
+            }
+            .rotateInfinite {
+            	-webkit-animation: rotateInfinite 1s linear infinite;
+            }
+            @-webkit-keyframes rotateInfinite {
+            	0%{-webkit-transform: rotate(0)}
+            	100%{-webkit-transform: rotate(360deg)}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading">
+            <img id="loadimg" src="img/preload.png" class="rotateInfinite" alt=""/>
+        </div>
+        <div id="main">
+            <canvas id="canvas" width="" height=""></canvas>
+            <notice>请锁定屏幕方向为竖屏后观看</notice>
+        </div>
+        <script src="./cvideo.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            document.body.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            });
+
+            document.addEventListener("DOMContentLoaded", function(e) {
+                var status = 'pause',
+                    timer = 0,
+                    screenMode = 'portrait';
+                var width = +getComputedStyle(document.body)['width'].replace('px', ''),
+                    height = +getComputedStyle(document.body)['height'].replace('px', ''),
+                    marginX = 0,
+                    marginY = 0;
+
+                var canvas = document.getElementById('canvas'),
+                    ctx = canvas.getContext('2d');
+
+                function setRect(rotate) {
+                    var ratio = 54 / 96;
+                    var bWidth = width,
+                        bHeight = height;
+
+                    if (width / height < ratio) {
+                        width = height * ratio;
+                        marginX = (bWidth - width)/2;
+                    } else {
+                        height = width / ratio;
+                        marginY = (bHeight - height)/2;
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                }
+
+                var w = Math.min(width, height) * 0.2;
+
+                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+                    var orientation = window.orientation;
+                    if (orientation === 90 || orientation === -90) {
+                        screenMode = 'landspace';
+                        pause();
+
+                    } else {
+                        screenMode = 'portrait';
+                        play();
+                    }
+                }, false);
+
+                document.getElementById('loadimg').style.width = w + 'px';
+                document.getElementById('loadimg').style.height = w + 'px';
+                document.getElementById('loadimg').style.margin = '-'+ w/2 +'px -'+ w/2 +'px';
+                document.getElementById('loadimg').style.display = 'block';
+
+                frames = [];
+                for (var i = 1; i < 1609; i++) {
+                    frames.push('img/infiniti/' + ('000'+i).substr(-4) + '.jpg');
+                }
+                var loader = new Loader(frames, Math.floor(frames.length * 0.3));
+                var loadline = loader.__rCount * 0.3;
+                var loadIndex = 0;
+                function firePlay (i) {
+                    document.body.removeChild(document.getElementById('loading'));
+                    document.getElementById('main').style.display = 'block';
+                    play();
+                    // if (i < loadline) {
+                    //     if (++loadIndex > loadline) {
+                    //
+                    //         // loader.off('loadfinish');
+                    //     }
+                    // }
+                }
+                loader.on('preloadfinish', firePlay);
+                frames = loader.preload();
+
+                setRect();
+
+                var fIndex = 0;
+                function execplay() {
+                    if (status === 'pause' || fIndex === frames.length) {
+                        clearTimeout(timer);
+                        return;
+                    }
+                    var frame = frames[fIndex];
+                    if (frame.status === 'ready') {
+                        frames[fIndex].img && ctx.drawImage(frames[fIndex].img, marginX, marginY, width, height);
+                        fIndex++;
+                    }
+                    timer = setTimeout(execplay, 40);
+                }
+
+                function pause() {
+                    status = 'pause';
+                    clearTimeout(timer);
+                    canvas.style.opacity = 0;
+                }
+                function play() {
+                    if (status === 'pause') {
+                        canvas.style.opacity = 1;
+                        status = 'play';
+                        execplay();
+                    }
+                }
+            }, false);
+        </script>
+    </body>
+</html>

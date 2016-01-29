@@ -79,7 +79,40 @@
         }
     }
 
-    var Loader = function (resouces, fps) {
+    var GetImage = function (task) {
+        if (task) {
+            this.id = task.id;
+            this.url = task.url;
+            this.callback = task.callback;
+        }
+    }
+
+    GetImage.prototype.load = function () {
+        var self = this;
+        var img = new Image();
+        img.onload = (function (i) {
+            return function () {
+                self.callback.call(self, i, img);
+            }
+        })(this.id);
+        img.onerror = (function (i) {
+            return function () {
+                self.callback.call(self, i, null);
+            }
+        })(this.id);
+        img.src = this.url;
+    }
+
+    GetImage.prototype.next = function (task) {
+        this.id = task.id;
+        this.url = task.url;
+        if (!this.callback) {
+            this.callback = task.callback;
+        }
+        this.load();
+    }
+
+    var Loader = function (resouces, preline) {
         this.__rCount = resouces.length;
         this.__finishCount = 0;
         this.__events = {};
@@ -90,14 +123,42 @@
                 img: null
             }
         });
-        this.fps = fps || 25;
+        this.__loadIdx = 0;
+        this.__loadList = [];
+        this.__maxParallelNum = 4;
+        for (var i = 0; i < this.__maxParallelNum; i++) {
+            this.__loadList.push(new GetImage());
+        }
+        this.__preline = preline;
     }
 
     Loader.prototype.preload = function () {
         var loader = this;
-        this.__resources.forEach(function (resouce, i) {
-            loader.load(i);
+        loader.__loadList.forEach(function (getImage) {
+            getImage.next({
+                id: loader.__loadIdx,
+                url: loader.__resources[loader.__loadIdx++].url,
+                callback: function (id, img) {
+                    loader.__resources[id].img = img;
+                    loader.__resources[id].status = 'ready';
+                    loader.fire('loadfinish', id);
+                    if (loader.__loadIdx === loader.__preline) {
+                        loader.fire('preloadfinish');
+                    }
+                    if (loader.__loadIdx < loader.__rCount) {
+                        var idx = loader.__loadIdx++;
+                        this.next({
+                            id: idx,
+                            url: loader.__resources[idx].url
+                        });
+                    } else {
+                        loader.fire('loadallfinish');
+                    }
+                }
+            });
+            // loader.__loadIdx++;
         });
+
         return loader.__resources;
     }
 
@@ -109,9 +170,7 @@
                 loader.__resources[i].img = img;
                 loader.__resources[i].status = 'ready';
                 loader.fire('loadfinish', i);
-                if (++loader.__finishCount === loader.__rCount) {
-                    loader.fire('loadallfinish');
-                }
+
             }
         })(i);
         img.onerror = (function (i) {
@@ -156,10 +215,6 @@
                 fn.call(loader, arg);
             });
         }
-    }
-
-    var Timeline = function () {
-
     }
 
     window.Loader = Loader;
