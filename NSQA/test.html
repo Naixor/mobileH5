@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta content="width=300,height=500,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
 	<title>height 测试</title>
 	<style>
 		html, body {
@@ -20,9 +20,41 @@
  			-webkit-transform: rotate(-60deg); 
 			content: "";
 		}
+		.fingerPointAnimate{
+			-webkit-animation: fingerPointAnimate 2.5s linear infinite;
+			-webkit-animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes fingerPointAnimate {
+			0%,40%{opacity: 0;-webkit-transform: translate3d(0,0,0);}
+			41%{opacity: 1;-webkit-transform: translate3d(0,0,0);}
+			79%{opacity: 1;-webkit-transform: translate3d(-320px,0,0);}
+			80%,100%{opacity: 0;-webkit-transform: translate3d(-320px,0,0);}
+		}
+		.fingerAnimate {
+			-webkit-animation: fingerAnimate 2.5s linear infinite;
+			-webkit-animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes fingerAnimate {
+			0%{-webkit-transform: translate3d(0,0,1px);}
+			40%{-webkit-transform: translate3d(480px,-160px,1px);}
+			80%{-webkit-transform: translate3d(160px,-160px,1px)}
+			100%{-webkit-transform: translate3d(0,0,1px);}
+		}
 	</style>
 </head>
 <body>
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="500px" height="500px" viewbox="0 0 640 640" xml:space="preserve" class="finger">
+		<!-- <defs>
+			<animateTransform id="left" attributeType="XML" attributeName="transform" type="translate" from="-320,0" to="0,0" dur="2s"></animateTransform>
+		</defs> -->
+						<g class="fingerPointAnimate">
+							<circle cx="480" cy="320" r="30" stroke="rgba(162,167,73,.3)" stroke-width="5" fill="rgba(131,137,145,.3)"></circle>
+							<circle cx="480" cy="320" r="37" fill="none" stroke="rgba(131,137,145,.3)" stroke-width="7"></circle>
+						</g>
+						<g class="fingerAnimate">
+							<image x="-320" y="480" width="320" height="198" xlink:href="img/finger.png" />
+						</g>
+					</svg>
 	<div id="arrow"></div>
 	<script>
 		window.onload = function() {

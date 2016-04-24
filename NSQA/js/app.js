@@ -91,32 +91,14 @@ app.run(function($app){
 	$app.registRes("arrowDown-text", "img/arrowDown-text.png");
 	$app.registRes("arrowDown-1", "img/arrowDown-1.png");
 	$app.registRes("arrowDown-2", "img/arrowDown-2.png");
-	$app.registRes("arrowLeft", "img/arrow-left.png");
-	$app.registRes("arrowRight", "img/arrow-right.png");
-	$app.registRes("battleman", "img/hero.png");
-	$app.registRes("battleman-logo", "img/page1/battleman-logo.png");
-	$app.registRes("spiderman-logo", "img/page1/spiderman-logo.png");
-	$app.registRes("captain-logo", "img/page1/captain-logo.png");
-	$app.registRes("ironman-logo", "img/page1/ironman-logo.png");
-	$app.registRes("battleman-top", "img/page2/battleman.png")
-	$app.registRes("lightning", "img/lightning.png")
-	$app.registRes("music", "img/page2/music.png");
-	$app.registRes("video", "img/page2/video.png");
-	$app.registRes("word_photo", "img/page2/word&photo.png");
-	$app.registRes("spiderman-top", "img/page3/spiderman.png");
-	$app.registRes("social", "img/page3/social.png");
-	$app.registRes("knowlage", "img/page3/knowlage.png");
-	$app.registRes("safe", "img/page3/safe.png");
-	$app.registRes("captain-top", "img/page4/captain.png");
-	$app.registRes("shield", "img/page4/shield.png");
-	$app.registRes("data", "img/page4/data.png");
-	$app.registRes("ironman-top", "img/page5/ironman.png");
-	$app.registRes("manager", "img/page5/manager.png");
+	$app.registRes("top", "img/top.png");
+	$app.registRes("tree", "img/tree.png");
 	$app.registRes("earth", "img/earth.png");
+	$app.registRes("finger", "img/finger.png")
 
 	$app.initial(function(percent){
 		// _$("")
-		_$("main").innerText = (percent*100).toFixed(0)+"%";
+		_$("main").innerText = (percent*90).toFixed(0)+"%";
 		// console.log(percent)
 	});
 });

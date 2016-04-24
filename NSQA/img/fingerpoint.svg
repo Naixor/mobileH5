@@ -1,0 +1,6 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="" y="" width="" height="" viewbox="0 0 88 88" xml:space="preserve" data-target="remindDiv">
+	<g data-target="remindDiv">
+		<circle cx="44" cy="320" r="30" stroke="rgba(162,167,73,.3)" stroke-width="5" fill="rgba(131,137,145,.3)"></circle>
+		<circle cx="400" cy="320" r="37" fill="none" stroke="rgba(131,137,145,.3)" stroke-width="7"></circle>
+	</g>
+</svg>
