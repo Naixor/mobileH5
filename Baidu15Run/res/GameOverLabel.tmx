@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="6" tilewidth="51" tileheight="50">
+ <tileset firstgid="1" name="label" tilewidth="51" tileheight="50">
+  <image source="label.png" width="255" height="50"/>
+ </tileset>
+ <layer name="块层 1" width="10" height="6">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAOsAIxIwHMQoQaWmFmItQwATEAGjwAPQ==
+  </data>
+ </layer>
+ <layer name="块层 2" width="10" height="6">
+  <data encoding="base64" compression="zlib">
+   eJxjZWBgYCSAWaA0IUCMmoEGABEsABQ=
+  </data>
+ </layer>
+</map>
