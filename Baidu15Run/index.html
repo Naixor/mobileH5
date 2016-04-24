@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>Baidu 15 Run</title>
-    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="full-screen" content="yes"/>
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
     <style>
+        html{width:100%;height:100%;}
         body, canvas, div {
             -moz-user-select: none;
             -webkit-user-select: none;
@@ -21,7 +21,14 @@
 </head>
 <body style="padding:0; margin: 0; background: #000;">
 <canvas id="gameCanvas" width="800" height="450"></canvas>
-
+<audio id="bgMusic" src="res/bgmusic.mp3" autoplay="autoplay" loop="loop" style="position:fixed;top:0;left:0;width:0;height:0;background:black;"></audio>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>if(window.localStorage.getItem("NOWPASS")){var GAMEOPTIONS={NOWPASS:+window.localStorage.getItem("NOWPASS"),REPLAY:false,TOTALSUM:2000}}else{var GAMEOPTIONS={NOWPASS:1,REPLAY:false,TOTALSUM:2000}}var $bgMusic=document.getElementById("bgMusic");$bgMusic.onload=function(){$bgMusic.play();document.removeEventListener("touchstart",playSound,false)};$bgMusic.load();var playSound=function(){$bgMusic.load();try{$bgMusic.play()}catch(b){}};document.addEventListener("touchstart",playSound,false);window.shareMessage=function(){var b="Baidu 15 Run",a="http://baidu15run.duapp.com/index.html",c="http://baidu15run.duapp.com/res/slogo.jpg";wx.onMenuShareTimeline({title:b,link:a,imgUrl:c,success:function(){},cancel:function(){}});wx.onMenuShareAppMessage({title:b,desc:"我是第"+GAMEOPTIONS.TOTALSUM+"位Baidu 15 Run闯关挑战者，已通过了"+((GAMEOPTIONS.NOWPASS-1)*100/7).toFixed(0)+"%的关卡。你也来玩吧！",link:a,imgUrl:c,trigger:function(d){},success:function(d){alert("谢谢支持~")},cancel:function(d){},fail:function(d){}});wx.onMenuShareQQ({title:b,desc:"我是第"+GAMEOPTIONS.TOTALSUM+"位Baidu 15 Run闯关挑战者，已通过了"+((GAMEOPTIONS.NOWPASS-1)*100/7).toFixed(0)+"%的关卡。你也来玩吧！",link:a,imgUrl:c,success:function(){},cancel:function(){}});wx.onMenuShareWeibo({title:b,desc:"我是第"+GAMEOPTIONS.TOTALSUM+"位Baidu 15 Run闯关挑战者，已通过了"+((GAMEOPTIONS.NOWPASS-1)*100/7).toFixed(0)+"%的关卡。你也来玩吧！",link:a,imgUrl:c,success:function(){},cancel:function(){}})};var xhr=new XMLHttpRequest();xhr.open("GET","/total?url="+btoa(window.location.href.split('#')[0]),true);xhr.onreadystatechange=function(c){if(xhr.readyState==4&&xhr.status===200){var b=xhr.responseText.split("#");GAMEOPTIONS.TOTALSUM=b[0];wx.config({debug:false,appId:"wx874077a8dc143f18",timestamp:+b[2],nonceStr:b[1],signature:b[3],jsApiList:["checkJsApi","onMenuShareTimeline","onMenuShareAppMessage","onMenuShareQQ","onMenuShareWeibo","hideMenuItems","showMenuItems","hideAllNonBaseMenuItem","showAllNonBaseMenuItem","translateVoice","startRecord","stopRecord","onRecordEnd","playVoice","pauseVoice","stopVoice","uploadVoice","downloadVoice","chooseImage","previewImage","uploadImage","downloadImage","getNetworkType","hideOptionMenu","showOptionMenu","closeWindow"]});wx.ready(function(){window.shareMessage();wx.showMenuItems({menuList:["menuItem:refresh","menuItem:profile","menuItem:addContact","menuItem:share:appMessage","menuItem:share:timeline","menuItem:share:qq","menuItem:share:weiboApp","menuItem:favorite"]});wx.hideMenuItems({menuList:["menuItem:dayMode","menuItem:exposeArticle","menuItem:nightMode","menuItem:openWithQQBrowser"]})})}};xhr.send();
+</script>
 <script src="game.min.js"></script>
+<script>
+var _bd=(("https:"==document.location.protocol)?"https://":"http://");
+document.write(unescape('%3Cscript%20src%3D%22'+_bd+'hm.baidu.com/hm.js?35c9558ed08d45ac9075aba024b44b81'+'%22%20type%3D%22text/javascript%22%3E%3C/script%3E'));
+</script>
 </body>
 </html>

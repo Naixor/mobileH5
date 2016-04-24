@@ -175,9 +175,13 @@
                 <file name="src/ui.js"/>
                 <file name="src/loadingScene.js"/>
                 <file name="src/startScene.js"/>
+                <file name="src/IntroduceLayer.js"/>
                 <file name="src/mainScene.js"/>
+                <file name="src/GamePassLayer.js"/>
                 <file name="src/GameOverLayer.js"/>
+                <file name="src/InfoLayer.js"/>
                 <file name="src/playScene.js"/>
+                <file name="src/ShareLayer.js"/>
                 <file name="main.js"/>
 
             </sources>
